@@ -2,12 +2,49 @@ var _ = require('underscore');
 
 module.exports = [
 	[
-		'get',
-		'/',
+		'get','/',['admin'],
 		function(req, res){
-			res.render('index');
+			res.render('admin/index',{
+				"title":"Index"
+			});
+		}
+	],
+	[
+		'get','/socialshare',['admin'],
+		function(req, res){
+			res.render('admin/social-share',{
+				"title":"Social Share"
+			});
+		}
+	],
+	[
+		'get','/login',['guest'],
+		function(req, res){
+			res.render('admin/login');
+		}
+	],
+	[
+		'post','/login',['guest'],
+		function(req, res){
+			if(req.body.email == 'admin@admin.com' && req.body.password == "admin"){
+				req.session.user = {
+					"isAdmin":true
+				};
+				if(req.remember){
+					req.session.cookie.maxAge = 3600000;
+				}
+			}
+			res.redirect('/admin/')
+		}
+	],
+	[
+		'get','/logout',['admin'],
+		function(req, res){
+			req.session.destroy();
+			res.redirect('/admin/')
 		}
 	]
+
 ];
 
 module.exports.prefix = "/admin";

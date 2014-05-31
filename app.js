@@ -3,11 +3,12 @@
  * Module dependencies.
  */
 
-var express = require('express')
-  , routes = require('./routes')
-  , RedisStore = require('connect-redis')(express)
-  , utility = require('./utils')
-  , ECT = require('ect');
+var express   = require('express')
+  , routes    = require('./routes')
+  , path      = require('path') 
+  , RedisStore= require('connect-redis')(express)
+  , utility   = require('./utils')
+  , ECT     = require('ect');
 
 var ectRenderer = ECT({ watch: true, root: __dirname + '/views', ext : '.html' });
 
@@ -15,11 +16,12 @@ var app = module.exports = express();
 
 // Configuration
 var env = process.env.NODE_ENV || 'development';
-app.set('config',require('config')[env]);
+app.set('config', require(path.resolve('config'))[env]);
 
 app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'html');
+  app.set('title',"Ellsute");
   app.engine('html', ectRenderer.render);
   app.use(express.bodyParser());
   app.use(express.methodOverride());
@@ -28,7 +30,7 @@ app.configure(function(){
   app.use(express.urlencoded());
   app.use(express.multipart());
   app.use(express.session({
-    secret: "Somethinggg",
+    secret: "aGVsbG9hc2ZzYWZmYXNm",
     store: new RedisStore({
         "url":app.get('config').redis
       })
@@ -39,10 +41,12 @@ app.configure(function(){
 
 app.configure('development', function(){
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+  app.use(express.logger('dev'));
 });
 
 app.configure('production', function(){
   app.use(express.errorHandler());
+  app.use(express.logger('prod'));
 });
 
 // Routes
