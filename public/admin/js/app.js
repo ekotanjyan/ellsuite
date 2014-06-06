@@ -5,16 +5,16 @@ define([
 	'directives',
 	'controllers',
 	'angularRoute',
-	], function (angular, filters, services, directives, controllers) {
+	'angularUnderscore',
+	], function (angular, filters, services, directives, controllers, angularUnderscore) {
 		'use strict';
 
 		// Declare app level module which depends on filters, and services
-
-		return angular.module('myApp', [
+		return angular.module('ellsuite', [
 			'ngRoute',
-			'myApp.controllers',
-			'myApp.filters',
-			'myApp.services',
-			'myApp.directives'
+			'ellsuite.controllers',
+			'ellsuite.filters',
+			'ellsuite.services',
+			'ellsuite.directives'
 		]);
 });

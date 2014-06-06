@@ -16,10 +16,11 @@ exports.initRouters = function(list,app){
 exports.initTitle = function(req, res, next){
     var _render = res.render.bind(res);
     res.render = function renderCustomModificaion(name, options, fn){
+        options = options || {};
         if(!options.customTitle){
             options.pTitle = (options.title || '') + (options.title?" - ":"") + req.app.get('title');
         }else{
-            options.pTitle = options.title;
+            options.pTitle = req.app.get('title');
         }
         _render(name, options ,fn);
     }

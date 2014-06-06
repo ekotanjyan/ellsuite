@@ -10,14 +10,6 @@ module.exports = [
 		}
 	],
 	[
-		'get','/socialshare',['admin'],
-		function(req, res){
-			res.render('admin/social-share',{
-				"title":"Social Share"
-			});
-		}
-	],
-	[
 		'get','/login',['guest'],
 		function(req, res){
 			res.render('admin/login');
@@ -43,8 +35,13 @@ module.exports = [
 			req.session.destroy();
 			res.redirect('/admin/')
 		}
-	]
-
+	],
+	[
+		'get','/*',['admin'],
+		function(req, res){
+			res.render('admin/index',{});
+		}
+	],
 ];
 
 module.exports.prefix = "/admin";

@@ -27,7 +27,9 @@ app.configure(function(){
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(express.cookieParser());
+  app.use(utility.initTitle);
   app.use(express.json());
+  app.use(express.favicon(path.resolve(__dirname,'public/favicon.ico')));
   app.use(express.urlencoded());
   app.use(express.multipart());
   app.use(express.session({
@@ -36,8 +38,8 @@ app.configure(function(){
         "url":app.get('config').redis
       })
   }));
-  app.use(app.router);
   app.use(express.static(__dirname + '/public'));
+  app.use(app.router);
 });
 
 app.configure('development', function(){
