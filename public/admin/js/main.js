@@ -1,7 +1,6 @@
 var _ModuelPrefix  = function(name){return ['libs/',name,'/',name].join('')};
 require.config({
     "baseUrl": "/admin/js/",
-
     "shim": {
         "angular": {
             "exports": "angular"
@@ -21,12 +20,15 @@ require.config({
             	"underscore"
             ]
         },
-        'jquery.slider':{
-            "deps":['jquery']
-        },
-        'angularSlider':{
-            "deps":['angular']
-        },
+        // 'jquery.slider':{
+        //     "deps":['jquery']
+        // },
+        // 'angularFacebook':{
+        //     "deps":['angular']
+        // },
+        // 'angularSlider':{
+        //     "deps":['angular']
+        // },
         "jquery":{
         	"exports":"$"
         }
@@ -43,9 +45,10 @@ require.config({
 	    "angularRoute": _ModuelPrefix('angular-route'),
 	    "underscore":_ModuelPrefix('underscore'),
 	    "angularScenario": _ModuelPrefix('angular-scenario'),
-        "angularSlider":'libs/ng-slider/src/ng-slider',
-        'jquery.slider':'libs/ng-slider/src/jquery.slider',
-	    "angularUnderscore": _ModuelPrefix('angular-underscore')  
+        // "angularSlider":'libs/ng-slider/src/ng-slider',
+        // 'jquery.slider':'libs/ng-slider/src/jquery.slider',
+        // 'angularFacebook':'libs/angular-facebook/lib/angular-facebook',
+	    "angularUnderscore": _ModuelPrefix('angular-underscore')
     }
 });
 window.name = "NG_DEFER_BOOTSTRAP!";

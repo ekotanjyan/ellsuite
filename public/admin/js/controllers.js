@@ -5,7 +5,7 @@ define(['angular', 'services'], function (angular) {
 
 	return angular.module('ellsuite.controllers', ['ellsuite.services'])
 		// Sample controller where service is being used
-		.controller('SocialShareController', ['$scope', 'version', function ($scope, version) {
+		.controller('SocialShareController', ['$scope', 'Facebook', function ($scope, Facebook) {
 			$scope.networks = [];
 			$scope.create = function CreatNetwork(type){
 				var _return;
