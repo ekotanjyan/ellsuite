@@ -21,7 +21,13 @@ require.config({
             ]
         },
         'jquery.slider':{
-            "deps":['jquery']
+          "deps":['angularSanitize']
+        },
+        'angularSlider':{
+            "deps":['angular','angularSanitize']
+        },
+        'angularSanitize':{
+          "deps":["angular"]
         },
         'angularFacebook':{
             "deps":['angular']
@@ -45,6 +51,7 @@ require.config({
       "angularSlider":'libs/ng-slider/src/ng-slider',
       'jquery.slider':'libs/ng-slider/src/jquery.slider',
       'angularFacebook':'libs/angular-facebook/lib/angular-facebook',
+      "angularSanitize":_ModuelPrefix('angular-sanitize'),
 	    "angularUnderscore": _ModuelPrefix('angular-underscore')
     }
 });

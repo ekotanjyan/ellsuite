@@ -1,14 +1,20 @@
-define(['angular', 'services', /*'angularSlider'*/], function(angular, services) {
+define(['angular', 'services', 'angularSlider'], function(angular, services) {
 	'use strict';
 
   /* Directives */
 
-	angular.module('ellsuite.directives', ['ellsuite.services'])
- 		.directive('elGridSlider',['ngSlider', function(){
+	angular.module('ellsuite.directives', ['ngSlider','ellsuite.services'])
+ 		.directive('elGridSlider',function(){
       return {
-        scope: {
-        },
-        templateUrl: 'my-customer-iso.html'
+        'require':'ngSlider',
+        'priority':1000,
+        'controller':function($scope){
+          $scope.gridOptions = {
+            from:1,
+            to:10,
+            step:1
+          }
+        }
       };
- 		}])
+ 		})
 });

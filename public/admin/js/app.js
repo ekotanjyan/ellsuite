@@ -5,7 +5,7 @@ define([
 	'directives',
 	'controllers',
 	'angularRoute',
-	// 'angularFacebook',
+	'angularFacebook',
 	'angularUnderscore',
 	], function (angular, filters, services, directives, controllers, angularUnderscore) {
 		'use strict';
@@ -13,7 +13,7 @@ define([
 		// Declare app level module which depends on filters, and services
 		return angular.module('ellsuite', [
 			'ngRoute',
-			// 'facebook',
+			'facebook',
 			'ellsuite.controllers',
 			'ellsuite.filters',
 			'ellsuite.services',

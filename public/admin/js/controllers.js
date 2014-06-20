@@ -7,6 +7,7 @@ define(['angular', 'services'], function (angular) {
 		// Sample controller where service is being used
 		.controller('SocialShareController', ['$scope', 'Facebook', function ($scope, Facebook) {
 			$scope.networks = [];
+			$scope.grid = 4;
 			$scope.create = function CreatNetwork(type){
 				var _return;
 				if(type){

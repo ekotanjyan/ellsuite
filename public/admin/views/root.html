@@ -16,7 +16,7 @@
 		</button>
 	</div>
     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-        <input ng-model="grids" type="text" slider options="gridOptions" />
+        <input ng-model="grid" type="text" id="gridslider" el-grid-slider slider  options="gridOptions" />
     </div>
 	<div class="col-xs-12 col-sm-6 col-md-3 col-lg-2">
 	    <li class="dropdown btn btn-block btn-outline btn-primary  ">
@@ -86,7 +86,7 @@
 
 <div class="row panel-streams">
     <div class="list-inline">
-        <div  ng-repeat="network in networks" class="stream col-xs-4 col-sm-4 col-md-4 col-lg-{{grid}}">
+        <div  ng-repeat="network in networks" class="stream col-xs-{{grid | grider}} col-sm-{{grid | grider}} col-md-{{grid | grider}} col-lg-{{grid | grider}}">
             <div class="panel panel-primary ">
                 <div class="panel-heading">
                     <i class="fa fa-{{network.type}} fa-fw"></i>

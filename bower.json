@@ -13,6 +13,7 @@
     "angular-underscore": "*",
     "angular-scenario": "latest",
     "ng-slider": "~0.1.4",
-    "angular-facebook": "~0.2.2"
+    "angular-facebook": "~0.2.2",
+    "angular-sanitize": "~1.2.18"
   }
 }
