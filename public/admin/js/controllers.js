@@ -34,11 +34,16 @@ define(['angular', 'services'], function (angular) {
 					});
 				}
 			};
+			$scope.$watch(function() {
+				return Facebook.isReady();
+			}, function(newVal) {
+				$scope.isFacebookReady = true;
+			});
 
 		}])
 		// More involved example where controller is required from an external file
-		.controller('NetworksController', ['$scope', '$injector', function($scope, $injector) {
-			
+		.controller('FacebookNetworksController', ['$scope', 'Facebook', function($scope, Facebook) {
+			debugger;
 		}])
 		.controller('NetworksControllerT', ['$scope', '$injector', function($scope, $injector) {
 			require(['controllers/NetworksController'], function(myctrl2) {

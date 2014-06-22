@@ -86,7 +86,12 @@
 
 <div class="row panel-streams">
     <div class="list-inline">
-        <div  ng-repeat="network in networks" class="stream col-xs-{{grid | grider}} col-sm-{{grid | grider}} col-md-{{grid | grider}} col-lg-{{grid | grider}}">
+        <div  ng-repeat="network in networks" el-network="{{network.$id}}" 
+            class=" stream 
+                    col-xs-{{grid | grider}}   
+                    col-sm-{{grid | grider}} 
+                    col-md-{{grid | grider}} 
+                    col-lg-{{grid | grider}}">
             <div class="panel panel-primary ">
                 <div class="panel-heading">
                     <i class="fa fa-{{network.type}} fa-fw"></i>

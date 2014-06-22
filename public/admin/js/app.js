@@ -13,14 +13,20 @@ define([
 		// Declare app level module which depends on filters, and services
 		return angular.module('ellsuite', [
 			'ngRoute',
-			'facebook',
 			'ellsuite.controllers',
 			'ellsuite.filters',
 			'ellsuite.services',
-			'ellsuite.directives'
+			'ellsuite.directives',
+			'facebook'
 		])
-		// .config(['FacebookProvider',function(FacebookProvider) {
-		// 	FacebookProvider.inti();
-		// }])
-
+		.config(['FacebookProvider',function(FacebookProvider) {
+			FacebookProvider.init('262737683876328');
+		}])
 });
+
+/**
+App ID
+262737683876328
+App Secret
+d2f8d7af03330705b42f4b4e53ad29bc
+*/
