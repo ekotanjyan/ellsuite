@@ -7,7 +7,8 @@ define([
 	'angularRoute',
 	'angularFacebook',
 	'angularUnderscore',
-	], function (angular, filters, services, directives, controllers, angularUnderscore) {
+	'LinkedIn',
+	], function (angular, filters, services, directives, controllers, angularRoute, angularFacebook, angularUnderscore, IN) {
 		'use strict';
 
 		// Declare app level module which depends on filters, and services
@@ -20,7 +21,12 @@ define([
 			'facebook'
 		])
 		.config(['FacebookProvider',function(FacebookProvider) {
-			FacebookProvider.init('262737683876328');
+			FacebookProvider.init('423840851054944');
+			IN.init({
+				"api_key":"75idosjcop3ki9",
+				"authorize":true
+			});
+			window.brr = IN;
 		}])
 });
 

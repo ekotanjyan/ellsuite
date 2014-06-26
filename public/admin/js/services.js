@@ -1,4 +1,4 @@
-define(['angular'], function (angular) {
+define(['angular','LinkedIn'], function (angular,IN) {
 	'use strict';
 
   /* Services */

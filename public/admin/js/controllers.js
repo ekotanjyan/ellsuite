@@ -44,6 +44,7 @@ define(['angular', 'services'], function (angular) {
 		// More involved example where controller is required from an external file
 		.controller('FacebookNetworksController', ['$scope', 'Facebook', function($scope, Facebook) {
 			debugger;
+			
 		}])
 		.controller('NetworksControllerT', ['$scope', '$injector', function($scope, $injector) {
 			require(['controllers/NetworksController'], function(myctrl2) {

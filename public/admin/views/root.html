@@ -86,7 +86,8 @@
 
 <div class="row panel-streams">
     <div class="list-inline">
-        <div  ng-repeat="network in networks" el-network="{{network.$id}}" 
+        <div  ng-repeat="network in networks" ng-controller="FacebookNetworksController" 
+            el-network="{{network.type}}" 
             class=" stream 
                     col-xs-{{grid | grider}}   
                     col-sm-{{grid | grider}} 

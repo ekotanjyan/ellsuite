@@ -15,10 +15,7 @@ require.config({
             "deps": ["angular","angularScenario"]
         },
         'angularUnderscore':{
-            "deps": [
-            	"angular",
-            	"underscore"
-            ]
+            "deps": ["angular","underscore"]
         },
         'jquery.slider':{
           "deps":['angularSanitize']
@@ -31,6 +28,9 @@ require.config({
         },
         'angularFacebook':{
             "deps":['angular']
+        },
+        "LinkedIn":{
+            "exports":"IN",
         },
         "jquery":{
         	"exports":"$"
@@ -48,11 +48,12 @@ require.config({
 	    "angularRoute": _ModuelPrefix('angular-route'),
 	    "underscore":_ModuelPrefix('underscore'),
 	    "angularScenario": _ModuelPrefix('angular-scenario'),
-      "angularSlider":'libs/ng-slider/src/ng-slider',
-      'jquery.slider':'libs/ng-slider/src/jquery.slider',
-      'angularFacebook':'libs/angular-facebook/lib/angular-facebook',
-      "angularSanitize":_ModuelPrefix('angular-sanitize'),
-	    "angularUnderscore": _ModuelPrefix('angular-underscore')
+        "angularSlider":'libs/ng-slider/src/ng-slider',
+        'jquery.slider':'libs/ng-slider/src/jquery.slider',
+        'angularFacebook':'libs/angular-facebook/lib/angular-facebook',
+        "angularSanitize":_ModuelPrefix('angular-sanitize'),
+	    "LinkedIn":"http://platform.linkedin.com/in.js?async=true",
+        "angularUnderscore": _ModuelPrefix('angular-underscore')
     }
 });
 window.name = "NG_DEFER_BOOTSTRAP!";

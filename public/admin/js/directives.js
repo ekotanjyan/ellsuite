@@ -19,14 +19,16 @@ define(['angular', 'services', 'angularSlider'], function(angular, services) {
       };
  		})
     //Network controllers
-    .directive('elNetwork',function(){
+    .directive('elNetworkE',function(){
       return {
+        "priority":-1,
         "restrict":"A",
-        "link":function($scope, attrs, type){
-          debugger
+        "link":function($scope, elem, attrs, controller){
+          
         },
         // "controllerAs":"FacebookNetworksController",
-        "controller":"@"
+        // "controller":"@"
+        "name":"elNetworkE"
       }
     });
 });
