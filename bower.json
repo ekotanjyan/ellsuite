@@ -14,6 +14,9 @@
     "angular-scenario": "latest",
     "ng-slider": "~0.1.4",
     "angular-facebook": "0.2.2",
-    "angular-sanitize": "~1.2.18"
+    "angular-sanitize": "~1.2.18",
+    "angular-google-plus": "~0.1.2",
+    "angular-moment": "~0.7.1",
+    "angular-safeapply": "~1.0.4"
   }
 }

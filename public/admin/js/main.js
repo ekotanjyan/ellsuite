@@ -53,6 +53,10 @@ require.config({
         'angularFacebook':'libs/angular-facebook/lib/angular-facebook',
         "angularSanitize":_ModuelPrefix('angular-sanitize'),
 	    "LinkedIn":"http://platform.linkedin.com/in.js?async=true",
+        "moment":'libs/moment/moment',
+        "angularGooglePlus":'libs/angular-google-plus/src/angular-google-plus',
+        "angular-moment":_ModuelPrefix('angular-moment'),
+        "angular-salfapply":'libs/angular-safeapply/safe-apply',
         "angularUnderscore": _ModuelPrefix('angular-underscore')
     }
 });

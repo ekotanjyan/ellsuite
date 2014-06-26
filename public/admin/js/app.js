@@ -8,6 +8,9 @@ define([
 	'angularFacebook',
 	'angularUnderscore',
 	'LinkedIn',
+	'angularGooglePlus',
+	'angular-moment',
+	'angular-salfapply',
 	], function (angular, filters, services, directives, controllers, angularRoute, angularFacebook, angularUnderscore, IN) {
 		'use strict';
 
@@ -18,15 +21,25 @@ define([
 			'ellsuite.filters',
 			'ellsuite.services',
 			'ellsuite.directives',
-			'facebook'
+			'facebook',
+			'angularMoment',
+			'SafeApply',
+			'googleplus'
 		])
-		.config(['FacebookProvider',function(FacebookProvider) {
-			FacebookProvider.init('423840851054944');
+		.config(['FacebookProvider','GooglePlusProvider',function(FacebookProvider,GooglePlusProvider) {
+			// Init Facebook module
+			FacebookProvider.init('653951331362826');
+			// Init LinkedIn module
 			IN.init({
 				"api_key":"75idosjcop3ki9",
 				"authorize":true
 			});
 			window.brr = IN;
+			// Init Google Plus module
+			GooglePlusProvider.init({
+				clientId: '457353786060-7vhqovi3o4n7qn0r45ouu1v3lbfuj4ck.apps.googleusercontent.com',
+				apiKey: 'AIzaSyA3eeNYBEkPOe9ddMYNdOL4NijSU3ygfAo'
+			});
 		}])
 });
 

@@ -7,7 +7,7 @@ define(['angular', 'services'], function (angular) {
 		// Sample controller where service is being used
 		.controller('SocialShareController', ['$scope', 'Facebook', function ($scope, Facebook) {
 			$scope.networks = [];
-			$scope.grid = 4;
+			$scope.grid = 2;
 			$scope.create = function CreatNetwork(type){
 				var _return;
 				if(type){
@@ -25,15 +25,6 @@ define(['angular', 'services'], function (angular) {
 			$scope.close = function RemoveNetwork(index){
 				$scope.networks.splice(index,1);
 			};
-			var _tmp;
-			for(var i= 0;i<2;i++){
-				_tmp = $scope.create('twitter');
-				for(var j= 0;j<2;j++){	
-					_tmp.items.push({
-						"text":"Something " + (new Date)
-					});
-				}
-			};
 			$scope.$watch(function() {
 				return Facebook.isReady();
 			}, function(newVal) {
@@ -41,10 +32,28 @@ define(['angular', 'services'], function (angular) {
 			});
 
 		}])
-		// More involved example where controller is required from an external file
+		.controller('LinkedinNetworksController', ['$scope', 'LinkedinAPI', function($scope, IN) {
+			function ReloadLinkedinData(){
+				IN.API.NetworkUpdates("me")
+					.fields([''])
+				    .result(function(res){
+						$scope.$parent.$safeApply(function(){
+					   		debugger;
+							$scope.network.items = res.values;
+					    });
+					});
+			};
+			$scope.refresh = ReloadLinkedinData;
+		}])
 		.controller('FacebookNetworksController', ['$scope', 'Facebook', function($scope, Facebook) {
-			debugger;
-			
+			// $scope.$apply(function(){
+				IN.API.MemberUpdates("me")
+				   .result(function(res){
+				   		$scope.items;
+				   		debugger;
+				   });
+			// });
+
 		}])
 		.controller('NetworksControllerT', ['$scope', '$injector', function($scope, $injector) {
 			require(['controllers/NetworksController'], function(myctrl2) {
