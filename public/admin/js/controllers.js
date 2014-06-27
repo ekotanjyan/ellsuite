@@ -14,9 +14,7 @@ define(['angular', 'services'], function (angular) {
 					_return = {
 						"type":type,
 						"createTime":Date.now(),
-						"items":[{
-							"text":"Something " + (new Date)
-						}]
+						"items":[]
 					}
 					$scope.networks.push(_return);
 				}
@@ -38,7 +36,6 @@ define(['angular', 'services'], function (angular) {
 					.fields([''])
 				    .result(function(res){
 						$scope.$parent.$safeApply(function(){
-					   		debugger;
 							$scope.network.items = res.values;
 					    });
 					});
@@ -46,14 +43,18 @@ define(['angular', 'services'], function (angular) {
 			$scope.refresh = ReloadLinkedinData;
 		}])
 		.controller('FacebookNetworksController', ['$scope', 'Facebook', function($scope, Facebook) {
-			// $scope.$apply(function(){
-				IN.API.MemberUpdates("me")
-				   .result(function(res){
-				   		$scope.items;
-				   		debugger;
-				   });
-			// });
-
+			function FetchFacebookData(cb){
+				Facebook.api('/me/home',cb);
+			}
+			function RefreshFacebookFeed(){
+				debugger;
+				FetchFacebookData(function(feed){
+					$scope.$parent.$safeApply(function(){
+						$scope.network.items = feed.data;
+					});
+				});
+			}
+			$scope.refresh = RefreshFacebookFeed; 
 		}])
 		.controller('NetworksControllerT', ['$scope', '$injector', function($scope, $injector) {
 			require(['controllers/NetworksController'], function(myctrl2) {

@@ -32,6 +32,9 @@ require.config({
         "LinkedIn":{
             "exports":"IN",
         },
+        "angularGooglePlus":{
+            "deps":['angular']
+        },
         "jquery":{
         	"exports":"$"
         }

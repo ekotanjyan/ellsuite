@@ -7,14 +7,14 @@ define(['angular', 'app'], function(angular, app) {
 			templateUrl: '/admin/views/root.html',
 			controller: 'SocialShareController'
 		});
-		// $routeProvider.when('/admin/logout',{
-		// 	controller:function(){
-		// 		$http.get({'url':'/admin/logout','method':'POST'})
-		// 			.success(function(data, status, headers, config){
-		// 				$location.path('/admin/index');
-		// 			});
-		// 	}
-		// });
+		$routeProvider.when('/admin/logout',{
+			controller:function(){
+				$http.get({'url':'/admin/logout','method':'POST'})
+					.success(function(data, status, headers, config){
+						$location.path('/admin/index');
+					});
+			}
+		});
 		$routeProvider.otherwise({redirectTo: '/admin/socialshare'});
 	}]);
 

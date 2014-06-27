@@ -19,16 +19,16 @@ define(['angular', 'services', 'angularSlider'], function(angular, services) {
       };
  		})
     //Network controllers
-    .directive('elNetworkLinkedinm',function(){
+    .directive('elNetworker',['$http', '$compile', '$interpolate', function($http, $compile, $interpolate){
       return {
-        "priority":1000,
-        // "restrict":"C",
+        "priority":500,
+        "replace": true,
         "link":function($scope, elem, attrs, controller){
-          debugger;
+          $http.get($interpolate('/admin/views/network/{{type}}-root.html')({type:$scope.network.type})).then(function(res){
+            elem.html($compile(res.data)($scope));
+          });
         },
-        // "templateUrl":"/admin/views/network/linkedin-root.html",
-        // "controllerAs":"LinkedinNetworksController",
-        "name":"elNetworkLinkedinm"
+        "name":"elNetworker"
       }
-    });
+    }]);
 });

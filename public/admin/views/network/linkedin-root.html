@@ -1,1 +1,60 @@
-adasdasdsd
+<div ng-controller="LinkedinNetworksController" class="panel panel-primary " 
+            ng-init="refresh()">
+    <div class="panel-heading">
+        <i class="fa fa-{{network.type}} fa-fw"></i>
+        {{network.type}}
+        <div class="btn-group pull-right">
+            <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                <i class="fa fa-chevron-down"></i>
+            </button>
+            <ul class="dropdown-menu slidedown">
+                <li>
+                    <a ng-click="refresh()">
+                        <i class="fa fa-refresh fa-fw"></i> Refresh
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-filter fa-fw"></i> Filter
+                    </a>
+                </li>
+                <li>
+                    <a ng-click="close($index)">
+                        <i class="fa fa-times fa-fw"></i> Close
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="panel-body">
+        <ul class="chat" ng-if="network.items.length">
+            <li ng-repeat="item in network.items" class="clearfix" ng-class='{left:$even,right:$odd}'>
+                <span class="chat-img pull-{{$even?'left':'right'}}">
+                    <img height="50" ng-src="{{item.updateContent.person.pictureUrl}}" alt="{{item.updateContent.person.firstName}}" class="img-circle">
+                </span>
+                <div class="chat-body clearfix">
+                    <div class="header" ng-if="$even">
+                        <strong class="primary-font">
+                            {{item.updateContent.person.firstName}}
+                        </strong> 
+                        <small class="pull-right text-muted">
+                            <i class="fa fa-clock-o fa-fw"></i> <span am-time-ago="item.timestamp"></span>
+                        </small>
+                    </div>
+                    <div class="header" ng-if="$odd">
+                        <small class="text-muted">
+                            <i class="fa fa-clock-o fa-fw"></i> <span am-time-ago="item.timestamp"></span>
+                        </small>
+                        <strong class="pull-right primary-font">
+                            {{item.updateContent.person.firstName}}
+                        </strong> 
+                    </div>
+                    <p>
+                        {{item.updateContent.person.headline}}
+                    </p>
+                </div>
+            </li>
+        </ul>
+        <em ng-if="!network.items.length" class="italic">Loading ...</em>
+    </div>
+</div>
