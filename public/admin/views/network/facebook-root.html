@@ -1,0 +1,77 @@
+<div ng-controller="FacebookNetworksController" class="panel panel-primary " 
+            ng-init="refresh()">
+    <div class="panel-heading">
+        <i class="fa fa-{{network.type}} fa-fw"></i>
+        {{network.type}}
+        <div class="btn-group pull-right">
+            <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                <i class="fa fa-chevron-down"></i>
+            </button>
+            <ul class="dropdown-menu slidedown">
+                <li>
+                    <a ng-click="refresh()">
+                        <i class="fa fa-refresh fa-fw"></i> Refresh
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-filter fa-fw"></i> Filter
+                    </a>
+                </li>
+                <li>
+                    <a ng-click="close($index)">
+                        <i class="fa fa-times fa-fw"></i> Close
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="panel-body">
+        <ul class="chat" ng-if="network.items.length">
+            <li ng-repeat="item in network.items" class="clearfix" ng-class='{left:$even,right:$odd}'>
+                <span class="chat-img pull-{{$even?'left':'right'}}">
+                    <img height="50" ng-src="https://graph.facebook.com/v2.0/{{item.from.id}}/picture" alt="{{item.from.name}}" class="img-circle">
+                </span>
+                <div class="chat-body clearfix">
+                    <div class="header" ng-if="$even">
+                        <a href="https://www.facebook.com/profile.php?id={{item.from.id}}" target="_blank">
+                            <strong class="primary-font">
+                                {{item.from.name}}
+                            </strong>
+                        </a> 
+                        <small class="pull-right text-muted">
+                            <i class="fa fa-clock-o fa-fw"></i> <span am-time-ago="item.created_time"></span>
+                        </small>
+                    </div>
+                    <div class="header" ng-if="$odd">
+                        <small class="text-muted">
+                            <i class="fa fa-clock-o fa-fw"></i> <span am-time-ago="item.created_time"></span>
+                        </small>
+                        <a href="https://www.facebook.com/profile.php?id={{item.from.id}}" target="_blank">
+                            <strong class="pull-right primary-font">
+                                 {{item.from.name}}
+                            </strong>
+                        </a> 
+                    </div>
+                    <p>
+                        {{item.message}}
+                    </p>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                          <a el-fb-like>
+                            Like
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <a>
+                            Comment
+                        </a>
+
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <em ng-if="!network.items.length" class="italic">Loading ...</em>
+    </div>
+</div>

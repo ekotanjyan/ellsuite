@@ -35,6 +35,9 @@ require.config({
         "angularGooglePlus":{
             "deps":['angular']
         },
+        "angular-salfapply":{
+            "deps":['angular']
+        },
         "jquery":{
         	"exports":"$"
         }

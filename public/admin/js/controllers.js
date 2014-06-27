@@ -30,39 +30,32 @@ define(['angular', 'services'], function (angular) {
 			});
 
 		}])
-		.controller('LinkedinNetworksController', ['$scope', 'LinkedinAPI', function($scope, IN) {
+		.controller('LinkedinNetworksController', ['$scope', 'Linkediner', function($scope, Linkediner) {
 			function ReloadLinkedinData(){
-				IN.API.NetworkUpdates("me")
-					.fields([''])
-				    .result(function(res){
-						$scope.$parent.$safeApply(function(){
-							$scope.network.items = res.values;
-					    });
-					});
+				Linkediner.fetch(function(res){
+					$scope.$parent.$safeApply(function(){
+						$scope.network.items = res.values;
+					});				
+				})
 			};
 			$scope.refresh = ReloadLinkedinData;
 		}])
-		.controller('FacebookNetworksController', ['$scope', 'Facebook', function($scope, Facebook) {
-			function FetchFacebookData(cb){
-				Facebook.api('/me/home',cb);
-			}
+		.controller('FacebookNetworksController', ['$scope', 'Facebooker', function($scope, Facebooker) {
 			function RefreshFacebookFeed(){
-				debugger;
-				FetchFacebookData(function(feed){
+				Facebooker.fetch(function(feed){
 					$scope.$parent.$safeApply(function(){
 						$scope.network.items = feed.data;
 					});
 				});
 			}
-			$scope.refresh = RefreshFacebookFeed; 
+			$scope.refresh = RefreshFacebookFeed;
+			RefreshFacebookFeed();
 		}])
-		.controller('NetworksControllerT', ['$scope', '$injector', function($scope, $injector) {
-			require(['controllers/NetworksController'], function(myctrl2) {
-				// injector method takes an array of modules as the first argument
-				// if you want your controller to be able to use components from
-				// any of your other modules, make sure you include it together with 'ng'
-				// Furthermore we need to pass on the $scope as it's unique to this controller
-				$injector.invoke(myctrl2, this, {'$scope': $scope});
+		.controller('GooglePlusNetworksController', ['$scope','Google',function($scope, Google){
+			Google.fetch(function(res){
+				$scope.safeApply(function(){
+					$scope.network.items = res || [];
+				});
 			});
-		}]);
+		}])
 });
