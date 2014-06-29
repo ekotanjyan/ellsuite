@@ -27,31 +27,27 @@
         </div>
     </div>
     <div class="panel-body">
+        <span class="chat-img" ng-if="network.items.length">
+            <img height="50" ng-src="{{network.items[0].actor.image.url}}" alt="{{network.items[0].actor.displayName}}" class="img-circle">
+        </span>
+        <strong class="primary-font">
+            {{network.items[0].actor.displayName}}
+        </strong>
+        <div class="clearfix"></div>
+        <hr>
         <ul class="chat" ng-if="network.items.length">
-            <li ng-repeat="item in network.items" class="clearfix" ng-class='{left:$even,right:$odd}'>
-                <span class="chat-img pull-{{$even?'left':'right'}}">
-                    <img height="50" ng-src="{{item.updateContent.person.pictureUrl}}" alt="{{item.updateContent.person.firstName}}" class="img-circle">
-                </span>
+            <li ng-repeat="item in network.items" class="clearfix">
                 <div class="chat-body clearfix">
-                    <div class="header" ng-if="$even">
-                        <strong class="primary-font">
-                            {{item.updateContent.person.firstName}}
-                        </strong> 
-                        <small class="pull-right text-muted">
-                            <i class="fa fa-clock-o fa-fw"></i> <span am-time-ago="item.timestamp"></span>
-                        </small>
+                    <small class="pull-right text-muted">
+                        <i class="fa fa-clock-o fa-fw"></i> <span am-time-ago="item.updated"></span>
+                    </small>
+                    <p>{{item.title}}</p>
+                    <div class="clearfix"></div>
+                    <div ng-repeat="attach in item.object.attachments" class="item item-body">
+                        <a target="_blank"ng-href="{{attach.url}}">{{attach.objectType}}</a>
+                        
+                        <img ng-if="attach.image" ng-src="{{ attach.image.url}}" height="60" class="pull-right"/>
                     </div>
-                    <div class="header" ng-if="$odd">
-                        <small class="text-muted">
-                            <i class="fa fa-clock-o fa-fw"></i> <span am-time-ago="item.timestamp"></span>
-                        </small>
-                        <strong class="pull-right primary-font">
-                            {{item.updateContent.person.firstName}}
-                        </strong> 
-                    </div>
-                    <p>
-                        {{item.updateContent.person.headline}}
-                    </p>
                 </div>
             </li>
         </ul>

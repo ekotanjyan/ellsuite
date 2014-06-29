@@ -1,25 +1,30 @@
-define(['angular','LinkedIn'], function (angular,IN) {
+define(['angular','LinkedIn', 'Codebird'], function (angular,IN, Codebird) {
 	'use strict';
-
-  /* Services */
-
-  // Demonstrate how to register services
-  // In this case it is a simple value service.
+	/* Services */
 	angular.module('ellsuite.services', [])
 		.factory('Google', ['GooglePlus',function (GooglePlus) {
+			var FetchActivites = function FetchGooglePlusActivity(cb){
+				gapi.client.load('plus','v1',function(){
+					var request = gapi.client.plus.activities.list({
+						'userId' : 'me',
+						'collection' : 'public'
+					}).execute(function(resp) {
+						cb(resp);
+					});
+				});
+			};
 			return {
 				fetch:function FetchGoogle(cb){
 					GooglePlus.getUser().then(function(res){
 						if(res.error){
 							GooglePlus.login().then(function (authResult) {
-					            console.log(authResult);
-					            GooglePlus.getUser().then(function (user) {
-					                console.log(user);
-					            });
-					            cb();
+					            FetchActivites(cb);
 					        }, function (err) {
 					            console.log(err);
+					            cb(err);
 					        });
+						}else{
+				            FetchActivites(cb);
 						}
 					});
 				}
@@ -32,7 +37,7 @@ define(['angular','LinkedIn'], function (angular,IN) {
 			return {
 				"fetch":function FetchFacebookFeed(cb){
 					Facebook.getLoginStatus(function(res){
-						if(res.setatus !== "connected"){
+						if(res.status !== "connected"){
 							Facebook.login(function(){
 								FetchFacebookData(cb);
 							});
@@ -53,16 +58,28 @@ define(['angular','LinkedIn'], function (angular,IN) {
 								callback(res);
 							});
 					};
-					if(LinkedinAPI.User.isAuthorized()){
+					if(IN.User.isAuthorized()){
 						ReloadLinkedinData(cb);
 					}else{
-						LinkedinAPI.User.authorize(function(){
+						IN.User.authorize(function(){
 							ReloadLinkedinData(cb);
 						})
 					}
 				}
 			};
 		}])
+		.factory('Twitter', ['$http',function ($http) {
+			
+			return {
+		
+			};
+		}])
+		.factory('Codebird', [function(){
+			var cb = new Codebird;
+			cb.setConsumerKey("zfXSbJYaS80ZY56QjsguOgfjJ", "IICmsKLLDiDqc9PCN0LBX5aChr5N1uRQNTQRyHwlqV3waMfSd4");
+			return cb;
+		}])
 		.value('LinkedinAPI', IN)
 		.value('version', '0.1');
+		console.log('ON service.js');
 });

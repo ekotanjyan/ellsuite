@@ -49,13 +49,34 @@ define(['angular', 'services'], function (angular) {
 				});
 			}
 			$scope.refresh = RefreshFacebookFeed;
-			RefreshFacebookFeed();
 		}])
 		.controller('GooglePlusNetworksController', ['$scope','Google',function($scope, Google){
 			Google.fetch(function(res){
-				$scope.safeApply(function(){
-					$scope.network.items = res || [];
+				$scope.$safeApply(function(){
+					debugger;
+					$scope.network.items = res.items || [];
 				});
 			});
 		}])
+		.controller('TwitterNetworksController', ['$scope', 'Codebird', function ($scope, cb) {
+		// gets a request token
+cb.__call(
+    "oauth_requestToken",
+    {oauth_callback: "oob"},
+    function (reply) {
+        // stores it
+        cb.setToken(reply.oauth_token, reply.oauth_token_secret);
+
+        // gets the authorize screen URL
+        cb.__call(
+            "oauth_authorize",
+            {},
+            function (auth_url) {
+                window.codebird_auth = window.open(auth_url);
+            }
+        );
+    }
+);
+		}])
+		console.log('ON Controllers.js');
 });

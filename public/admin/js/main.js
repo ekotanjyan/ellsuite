@@ -35,6 +35,9 @@ require.config({
         "angularGooglePlus":{
             "deps":['angular']
         },
+        "Codebird":{
+            "exports":"Codebird"
+        },
         "angular-salfapply":{
             "deps":['angular']
         },
@@ -63,6 +66,7 @@ require.config({
         "angularGooglePlus":'libs/angular-google-plus/src/angular-google-plus',
         "angular-moment":_ModuelPrefix('angular-moment'),
         "angular-salfapply":'libs/angular-safeapply/safe-apply',
+        "Codebird":'libs/codebird-js/codebird',
         "angularUnderscore": _ModuelPrefix('angular-underscore')
     }
 });
