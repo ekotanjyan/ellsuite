@@ -41,6 +41,9 @@ require.config({
         "angular-salfapply":{
             "deps":['angular']
         },
+        "ui.multiselect":{
+            "deps":['angular']
+        },
         "jquery":{
         	"exports":"$"
         }
@@ -67,6 +70,7 @@ require.config({
         "angular-moment":_ModuelPrefix('angular-moment'),
         "angular-salfapply":'libs/angular-safeapply/safe-apply',
         "Codebird":'libs/codebird-js/codebird',
+        'ui.multiselect':'libs/isteven-angular-multiselect/angular-multi-select',
         "angularUnderscore": _ModuelPrefix('angular-underscore')
     }
 });

@@ -11,6 +11,7 @@ define([
 	'angularGooglePlus',
 	'angular-moment',
 	'angular-salfapply',
+	'ui.multiselect',
 	], function (angular, filters, services, directives, controllers, angularRoute, angularFacebook, angularUnderscore, IN) {
 		'use strict';
 
@@ -21,10 +22,12 @@ define([
 			'ellsuite.filters',
 			'ellsuite.services',
 			'ellsuite.directives',
+			'angular-underscore',
 			'facebook',
 			'angularMoment',
 			'SafeApply',
-			'googleplus'
+			'googleplus',
+			'multi-select'
 		])
 		.config(['FacebookProvider','GooglePlusProvider', function(FacebookProvider,GooglePlusProvider, cb) {
 			// Init Facebook module.

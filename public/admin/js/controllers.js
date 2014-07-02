@@ -60,23 +60,51 @@ define(['angular', 'services'], function (angular) {
 		}])
 		.controller('TwitterNetworksController', ['$scope', 'Codebird', function ($scope, cb) {
 		// gets a request token
-cb.__call(
-    "oauth_requestToken",
-    {oauth_callback: "oob"},
-    function (reply) {
-        // stores it
-        cb.setToken(reply.oauth_token, reply.oauth_token_secret);
+			cb.__call(
+			    "oauth_requestToken",
+			    {oauth_callback: "oob"},
+			    function (reply) {
+			        // stores it
+			        cb.setToken(reply.oauth_token, reply.oauth_token_secret);
 
-        // gets the authorize screen URL
-        cb.__call(
-            "oauth_authorize",
-            {},
-            function (auth_url) {
-                window.codebird_auth = window.open(auth_url);
-            }
-        );
-    }
-);
+			        // gets the authorize screen URL
+			        cb.__call(
+			            "oauth_authorize",
+			            {},
+			            function (auth_url) {
+			                window.codebird_auth = window.open(auth_url);
+			            }
+			        );
+			    }
+			);
+		}])
+		.controller('SendAndShareController',['$scope',function($scope){
+			$scope.sentTo = [];
+			$scope.__defineGetter__('providers',function(){
+				var __tmp = [];
+				debugger;
+				return $scope.networks.filter(function(n){
+					if(~__tmp.indexOf(n.type)){
+						return false;
+					}else{
+						__tmp.push(n.type);
+						return true;
+					}
+				});
+			});
+			$scope.__defineGetter__('twitterCounter',function(){
+				return 140-$scope.message.length;
+			});
+			$scope.__defineGetter__('facebookCounter',function(){
+				return 420-$scope.message.length;
+			});
+			$scope.__defineGetter__('googlePlusCounter',function(){
+				return 14000-$scope.message.length;
+			});
+			$scope.__defineGetter__('linkedinCounter',function(){
+				return 600-$scope.message.length;
+			});
+
 		}])
 		console.log('ON Controllers.js');
 });

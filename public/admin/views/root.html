@@ -1,6 +1,6 @@
 <div class="well well-sm row">
 	<div class="col-xs-12 col-sm-6 col-md-3 col-lg-2 ">
-		<button data-target="#sendAndShare" class="btn btn-primary btn-outline">
+		<button data-target="#sendAndShare" data-toggle="modal" class="btn btn-primary btn-outline">
 			<i class="fa fa-bullhorn"></i>
 			Send and Share
 		</button>
@@ -94,11 +94,10 @@
                     col-sm-{{grid | grider}} 
                     col-md-{{grid | grider}} 
                     col-lg-{{grid | grider}}">
-            
         </div>
     </div>
 </div>
-<div class="modal fade" id="sendAndShare" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="sendAndShare" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="SendAndShareController">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -106,7 +105,33 @@
                 <h4 class="modal-title" id="myModalLabel">Share to.</h4>
             </div>
             <div class="modal-body">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <multi-select class="input-xlarge"
+                        output-model="sentTo"
+                        button-label="type"
+                        input-model="providers"
+                        helper-elements="none"
+                        item-label="type"
+                        tick-property="isOn"></multi-select>
+                    <i class="fa fa-{{network.type}} fa-fw" ng-repeat="network in sentTo"></i>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <textarea class="form-control" ng-model="message" rows="3"></textarea>
+                    <p class="help-block">
+                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 label label-danger" ng-if="twitterCounter<0">
+                            {{twitterCounter}} <i class="fa fa-twitter fa-fw" ></i>
+                        </div>
+                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 label label-danger" ng-if="linkedinCounter<0">
+                            {{linkedinCounter}} <i class="fa fa-linkedin fa-fw" ></i>
+                        </div>
+                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 label label-danger" ng-if="facebookCounter<0">
+                            {{facebookCounter}} <i class="fa fa-facebook fa-fw" ></i>
+                        </div>
+                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 label label-danger" ng-if="googlePlusCounter<0">
+                            {{googlePlusCounter}} <i class="fa fa-google-plus fa-fw" ></i>
+                        </div>
+                    </p>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
