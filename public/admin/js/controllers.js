@@ -139,9 +139,7 @@ define(['angular', 'services'], function (angular) {
 			});
 			$scope.save = function(){
 				$http.post(__macroPath,{'content':$scope.message}).success(function(data){
-					$('#macros').modal('hide');
-					$scope.macros.unshift();
-					console.log(data)
+					$scope.macros.unshift(data.macro);
 				});
 			};
 		}])
