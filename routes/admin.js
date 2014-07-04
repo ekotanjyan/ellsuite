@@ -76,7 +76,7 @@ module.exports = [
 				var aMacro = Macro(req.body);
 				aMacro.save(function(err, macro){
 					if(err)return res.json(500, err);
-					else res.json({'success':true,"macro":req.body});
+					else res.json({'success':true,"macro":macro});
 				})
 			}else{
 				res.send(400);

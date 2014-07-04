@@ -12,6 +12,7 @@ define([
 	'angular-moment',
 	'angular-salfapply',
 	'ui.multiselect',
+	'angularResource'
 	], function (angular, filters, services, directives, controllers, angularRoute, angularFacebook, angularUnderscore, IN) {
 		'use strict';
 

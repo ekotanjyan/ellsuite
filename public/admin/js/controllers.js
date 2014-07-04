@@ -78,8 +78,9 @@ define(['angular', 'services'], function (angular) {
 			    }
 			);
 		}])
-		.controller('SendAndShareController',['$scope',function($scope){
+		.controller('SendAndShareController',['$scope', '$rootScope', function($scope, $rootScope){
 			$scope.sentTo = [];
+			$scope.message = '';
 			$scope.__defineGetter__('providers',function(){
 				var __tmp = [];
 				return $scope.networks.filter(function(n){
@@ -103,18 +104,46 @@ define(['angular', 'services'], function (angular) {
 			$scope.__defineGetter__('linkedinCounter',function(){
 				return 600-$scope.message.length;
 			});
-
+			$scope.$on('setMacroOnSharebox',function($event, aMacro){
+				$scope.message += "\n" + aMacro.content;
+			});
+			$scope.beforeMacroOpen = function(){
+				$rootScope.$broadcast('giveCurrentMessage',$scope.message);
+			}
 		}])
-		.controller('MacrosController',['$scope', 'Macros', function($scope, Macros){
-			debugger;
-			$scope.macros = [
-				{
-					"content":"Brrrdshh",
-				},
-				{
-					"content":"Bradsarrdshh",
+		.controller('MacrosController',['$scope', '$http', '$rootScope', function($scope, $http, $rootScope){	
+			var __macroPath = '/admin/macro'; 
+			$scope.message = '';
+			$http.get(__macroPath).success(function(res){
+				$scope.$safeApply(function(){
+					$scope.macros = res;
+				});
+			});
+			$scope.delete = function(index){
+			    $http.delete(__macroPath + '/' + $scope.macros[index]['_id']);
+				$scope.macros.splice(index, 1);
+			};
+			$scope.useMacro = function(id){
+				var aMacro = $scope.macros.find(function(macro){
+					if(macro._id == id)return macro;
+				});
+				if(aMacro){
+					$rootScope.$broadcast('setMacroOnSharebox',aMacro);
+					$('#macros').modal('hide');
+				}else{
+					throw "UNKNOWN MACRO.";
 				}
-			]
+			}
+			$scope.$on('giveCurrentMessage',function($event, message){
+				$scope.message = message;
+			});
+			$scope.save = function(){
+				$http.post(__macroPath,{'content':$scope.message}).success(function(data){
+					$('#macros').modal('hide');
+					$scope.macros.unshift();
+					console.log(data)
+				});
+			};
 		}])
 		console.log('ON Controllers.js');
 });
