@@ -1,6 +1,10 @@
-var _ = require('underscore');
+var _ = require('underscore'),
+	mongoose = require('mongoose'),
+	Macro = mongoose.model('Macro');
 
+//Initers	
 require("underscore-keypath");
+
 module.exports = [
 	[
 		'get','/',['admin'],
@@ -45,6 +49,38 @@ module.exports = [
 		function(req, res){
 			req.session.destroy();
 			res.redirect('/admin/')
+		}
+	],
+	[	
+		'get','/macro',['admin'],
+		function(req, res){
+			Macro.find({},function(err, macros){
+				if(err)return res.json(500, err);
+				else res.json(macros);
+			});
+		}
+	],
+	[	
+		'delete','/macro/:id',['admin'],
+		function(req, res){
+			Macro.findOneAndRemove({"_id":req.params.id},function(err){
+				if(err)return res.json(500, err);
+				else res.json({'success':true,"id":req.params.id});
+			});
+		}
+	],
+	[	
+		'post','/macro',['admin'],
+		function(req, res){
+			if(req.body){
+				var aMacro = Macro(req.body);
+				aMacro.save(function(err, macro){
+					if(err)return res.json(500, err);
+					else res.json({'success':true,"macro":req.body});
+				})
+			}else{
+				res.send(400);
+			}
 		}
 	],
 	[

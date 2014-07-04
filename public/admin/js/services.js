@@ -2,6 +2,9 @@ define(['angular','LinkedIn', 'Codebird'], function (angular,IN, Codebird) {
 	'use strict';
 	/* Services */
 	angular.module('ellsuite.services', [])
+		.factory('Macros',['$resource',function($resource){
+			return $resource('/admin/macro/:id');
+		}])
 		.factory('Google', ['GooglePlus',function (GooglePlus) {
 			var FetchActivites = function FetchGooglePlusActivity(cb){
 				gapi.client.load('plus','v1',function(){

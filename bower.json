@@ -5,7 +5,7 @@
     "angular": "~1.2",
     "jquery": "~1.9.1",
     "bootstrap-sass": "~2.3.1",
-    "angular-resource": "latest",
+    "angular-resource": "~1.2.19",
     "angular-cookies": "latest",
     "requirejs": "~2.1.13",
     "underscore": "~1.6.0",

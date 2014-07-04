@@ -82,7 +82,6 @@ define(['angular', 'services'], function (angular) {
 			$scope.sentTo = [];
 			$scope.__defineGetter__('providers',function(){
 				var __tmp = [];
-				debugger;
 				return $scope.networks.filter(function(n){
 					if(~__tmp.indexOf(n.type)){
 						return false;
@@ -105,6 +104,17 @@ define(['angular', 'services'], function (angular) {
 				return 600-$scope.message.length;
 			});
 
+		}])
+		.controller('MacrosController',['$scope', 'Macros', function($scope, Macros){
+			debugger;
+			$scope.macros = [
+				{
+					"content":"Brrrdshh",
+				},
+				{
+					"content":"Bradsarrdshh",
+				}
+			]
 		}])
 		console.log('ON Controllers.js');
 });

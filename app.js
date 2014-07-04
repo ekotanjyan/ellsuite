@@ -40,6 +40,7 @@ app.configure(function(){
   }));
   app.use(express.static(__dirname + '/public'));
   app.use(app.router);
+  require('./db').init(app);
 });
 
 app.configure('development', function(){

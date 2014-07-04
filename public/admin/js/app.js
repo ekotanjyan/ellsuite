@@ -27,6 +27,7 @@ define([
 			'angularMoment',
 			'SafeApply',
 			'googleplus',
+			'ngResource',
 			'multi-select'
 		])
 		.config(['FacebookProvider','GooglePlusProvider', function(FacebookProvider,GooglePlusProvider, cb) {
