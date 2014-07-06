@@ -1,15 +1,11 @@
 .network-icons-pane{
 	overflow: hidden;
 }
-/*.panel-streams{
-    overflow-x:scroll;
-    overflow-y:hidden;
-    width:100%;
-}*/
+
 .panel-streams .panel-heading{
 	text-transform: capitalize;
 }
-/*.panel-streams .stream > .panel{
-    padding:0;
-    height:400px;
-}*/
+
+.share-input-box{
+	margin-top: 7px;
+}

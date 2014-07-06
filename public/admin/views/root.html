@@ -1,20 +1,18 @@
 <div class="well well-sm row">
 	<div class="col-xs-12 col-sm-6 col-md-3 col-lg-2 ">
-		<button data-target="#sendAndShare" data-toggle="modal" class="btn btn-primary btn-outline">
+		<button data-target="#sendAndShare" data-toggle="modal" class="btn btn-primary btn-outline btn-block">
 			<i class="fa fa-bullhorn"></i>
 			Send and Share
 		</button>
 	</div>
-	<div class="col-xs-12 col-sm-6 col-md-3 col-lg-1 ">
+	<div class="col-xs-12 col-sm-6 col-md-3 col-lg-2 ">
 		<button class="btn btn-primary btn-outline">
 			<i class="fa fa-refresh"></i>
-		</button>
-	</div>
-	<div class="col-xs-12 col-sm-6 col-md-3 col-lg-1 ">
+        </button>
 		<button class="btn btn-primary btn-outline">
 			<i class="fa fa-clock-o"></i>
 		</button>
-	</div>
+    </div>
     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
         <input ng-model="grid" type="text" id="gridslider" el-grid-slider slider  options="gridOptions" />
     </div>
@@ -59,7 +57,7 @@
                     
                 </li>
 	</div>
-	<div ng-if="network.length" class="col-xs-12 col-sm-6 col-md-3 col-lg-2">
+	<div ng-if="networks.length" class="col-xs-12 col-sm-6 col-md-3 col-lg-2">
 		<div class="panel row panel-primary network-icons-pane">
             <button  ng-class="{'pull-left':$last}" ng-repeat="network in networks" type="button" class="btn btn-{{network.type}} btn-default"><i class="fa fa-{{network.type}}"></i></button>
         </div>
@@ -104,7 +102,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title" id="myModalLabel">Share to.</h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <multi-select class="input-xlarge"
                         output-model="sentTo"
@@ -115,7 +113,7 @@
                         tick-property="isOn"></multi-select>
                     <i class="fa fa-{{network.type}} fa-fw" ng-repeat="network in sentTo"></i>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 share-input-box">
                     <textarea class="form-control" ng-model="message" rows="3"></textarea>
                     <p class="help-block">
                         <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 label label-danger" ng-if="twitterCounter<0">
@@ -133,7 +131,7 @@
                     </p>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <button type="button" data-target="#macros" data-toggle="modal" ng-click="beforeMacroOpen()" class="btn btn-default">Macros</button>
+                    <button type="button" data-target="#macros" data-toggle="modal" ng-click="beforeMacroOpen()" class="btn btn-success pull-right">Macros</button>
                 </div>
             </div>
             <div class="modal-footer">

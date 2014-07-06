@@ -1,11 +1,11 @@
-define(['angular', 'services'], function (angular) {
+	define(['angular', 'services'], function (angular) {
 	'use strict';
 
 	/* Controllers */
 
 	return angular.module('ellsuite.controllers', ['ellsuite.services'])
 		// Sample controller where service is being used
-		.controller('SocialShareController', ['$scope', 'Facebook', function ($scope, Facebook) {
+		.controller('SocialShareController', ['$scope', 'Facebook', '$rootScope', function ($scope, Facebook, $rootScope) {
 			$scope.networks = [];
 			$scope.grid = 2;
 			$scope.create = function CreatNetwork(type){
@@ -23,6 +23,9 @@ define(['angular', 'services'], function (angular) {
 			$scope.close = function RemoveNetwork(index){
 				$scope.networks.splice(index,1);
 			};
+			$scope.$watchCollection('networks',function(){
+				$scope.$broadcast('networksEdited');
+			});
 			$scope.$watch(function() {
 				return Facebook.isReady();
 			}, function(newVal) {
@@ -81,7 +84,7 @@ define(['angular', 'services'], function (angular) {
 		.controller('SendAndShareController',['$scope', '$rootScope', function($scope, $rootScope){
 			$scope.sentTo = [];
 			$scope.message = '';
-			$scope.__defineGetter__('providers',function(){
+			var providersFilter = function(){
 				var __tmp = [];
 				return $scope.networks.filter(function(n){
 					if(~__tmp.indexOf(n.type)){
@@ -91,6 +94,10 @@ define(['angular', 'services'], function (angular) {
 						return true;
 					}
 				});
+			};
+			$scope.providers = providersFilter();
+			$scope.$on('networksEdited',function(){
+				$scope.providers = providersFilter();
 			});
 			$scope.__defineGetter__('twitterCounter',function(){
 				return 140-$scope.message.length;
