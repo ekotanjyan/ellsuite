@@ -107,6 +107,7 @@
                     <multi-select class="input-xlarge"
                         output-model="sentTo"
                         button-label="type"
+                        default-label="Choose Profile"
                         input-model="providers"
                         helper-elements="none"
                         item-label="type"
@@ -160,7 +161,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Click a macro to apply it:</div>
                     <div class="list-group">
-                        <a ng-click="useMacro(macro._id)" ng-repeat="macro in macros" class="list-group-item">
+                        <a ng-click="useMacro(macro._id)" ng-repeat="macro in macros" class="list-group-item btn-link">
                             <button ng-click="delete($index)" type="button" class="btn btn-danger"><i class="fa fa-ban"></i></button>
                             {{macro.content}}
                         </a>
