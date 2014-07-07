@@ -19,6 +19,7 @@
     "angular-moment": "~0.7.1",
     "angular-safeapply": "~1.0.4",
     "codebird-js": "~2.5.0",
+    "angularjs-geolocation": "0.1.1",
     "isteven-angular-multiselect": "*"
   }
 }

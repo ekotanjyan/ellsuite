@@ -6,7 +6,7 @@
 		</button>
 	</div>
 	<div class="col-xs-12 col-sm-6 col-md-3 col-lg-2 ">
-		<button class="btn btn-primary btn-outline">
+		<button ng-click="networks.refresh()" class="btn btn-primary btn-outline">
 			<i class="fa fa-refresh"></i>
         </button>
 		<button class="btn btn-primary btn-outline">
@@ -104,7 +104,8 @@
             </div>
             <div class="modal-body row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <multi-select class="input-xlarge"
+                <div class="alert alert-info" ng-if="!providers.length" role="alert">To share you must be connected network.</div>
+                    <multi-select ng-if="providers.length" class="input-xlarge"
                         output-model="sentTo"
                         button-label="type"
                         default-label="Choose Profile"
@@ -131,8 +132,33 @@
                         </div>
                     </p>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <button type="button" data-target="#macros" data-toggle="modal" ng-click="beforeMacroOpen()" class="btn btn-success pull-right">Macros</button>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
+                    <div class="btn-group pull-right">
+                        <button type="button" ng-click="showLocation()" class="btn btn-success" title="Location">
+                            <i class="fa fa-location-arrow"></i>
+                        </button>
+                        <button type="button" ng-click="link.add()" class="btn btn-success" title="Location">
+                            <i class="fa fa-link"></i>
+                        </button>
+                        <button type="button" title="Macros" data-target="#macros" data-toggle="modal" ng-click="beforeMacroOpen()" class="btn btn-success">
+                            <i class="fa fa-floppy-o"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8" ng-if="link.value">
+                    <div class="input-group">
+                        <input type="text" class="form-control" ng-model="link.value" placeholder="http://">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-danger" ng-click="link.destroy()"><i class="fa fa-ban"></i></button>
+                        </span>
+                    </div>
+                </div>
+                <div ng-if="location.isShown" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    You are here -  <i class="fa fa-location-arrow"></i> 
+                    <span ng-if="location.position" class="btn-link">
+                        {{location.position}}
+                    </span>
+                    <em class="italic" ng-if="!location.position">Moment please...</em>
                 </div>
             </div>
             <div class="modal-footer">

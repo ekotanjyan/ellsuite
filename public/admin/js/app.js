@@ -7,12 +7,13 @@ define([
 	'angularRoute',
 	'angularFacebook',
 	'angularUnderscore',
-	'LinkedIn',
+	'LinkedIn',			/*Important to keep index at 9-th*/
 	'angularGooglePlus',
 	'angular-moment',
 	'angular-salfapply',
 	'ui.multiselect',
-	'angularResource'
+	'angularResource',
+	'angularGeolocation',
 	], function (angular, filters, services, directives, controllers, angularRoute, angularFacebook, angularUnderscore, IN) {
 		'use strict';
 
@@ -29,7 +30,8 @@ define([
 			'SafeApply',
 			'googleplus',
 			'ngResource',
-			'multi-select'
+			'multi-select',
+			'geolocation',
 		])
 		.config(['FacebookProvider','GooglePlusProvider', function(FacebookProvider,GooglePlusProvider, cb) {
 			// Init Facebook module.

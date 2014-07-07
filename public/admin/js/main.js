@@ -47,6 +47,9 @@ require.config({
         },
         "jquery":{
         	"exports":"$"
+        },
+        "angularGeolocation":{
+            "deps":['angular']
         }
     },
     "priority": [
@@ -64,6 +67,7 @@ require.config({
         "angularSlider":'libs/ng-slider/src/ng-slider',
         'jquery.slider':'libs/ng-slider/src/jquery.slider',
         'angularFacebook':'libs/angular-facebook/lib/angular-facebook',
+        'angularGeolocation':'libs/angularjs-geolocation/src/geolocation',
         "angularSanitize":_ModuelPrefix('angular-sanitize'),
 	    "LinkedIn":"http://platform.linkedin.com/in.js?async=true",
         "moment":'libs/moment/moment',

@@ -1,5 +1,6 @@
 var _ = require('underscore'),
 	mongoose = require('mongoose'),
+	geocoder = require('geocoder'),
 	Macro = mongoose.model('Macro');
 
 //Initers	
@@ -80,6 +81,31 @@ module.exports = [
 				})
 			}else{
 				res.send(400);
+			}
+		}
+	],
+	[
+		'get','/geocoder',['admin'],
+		function(req, res){
+			if(isNaN( Number(req.query.lat) + Number(req.query.long) )){
+				return res.json(400,{
+					"error":true,
+					"msg":"Invalid format for LAT an' LONG."
+				});
+			}else{
+				geocoder.reverseGeocode(req.query.lat, req.query.long, function(err, location){
+					if(err){
+						return res.json(500, {
+							"error":true,
+							"msg":err
+						});
+					}else{
+						return res.json(200, {
+							"success":true,
+							"location":location['results'][0]['formatted_address']
+						});
+					}
+				})
 			}
 		}
 	],

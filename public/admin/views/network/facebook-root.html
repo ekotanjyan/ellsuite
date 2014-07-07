@@ -56,7 +56,9 @@
                     <div class="item item-body">
                         <p ng-if="item.story">{{item.story}}</p>
                         <p>{{item.message}}</p>
-                        <img ng-if="item.picture" ng-src="{{ item.picture }}"/>
+                        <a ng-if="item.picture" ng-href="{{ite.actions[0].link}}">
+                            <img  ng-src="{{ item.picture }}"/>
+                        </a>
                     </div>
                 </div>
                 <div class="row">

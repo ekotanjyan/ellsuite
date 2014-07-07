@@ -23,7 +23,7 @@
 			$scope.close = function RemoveNetwork(index){
 				$scope.networks.splice(index,1);
 			};
-			$scope.$watchCollection('networks',function(){
+			$scope.$watchCollection	('networks',function(){
 				$scope.$broadcast('networksEdited');
 			});
 			$scope.$watch(function() {
@@ -31,7 +31,11 @@
 			}, function(newVal) {
 				$scope.isFacebookReady = true;
 			});
-
+			$scope.networks.refresh = function(){
+				angular.forEach($scope.networks,function(network){
+					network.refresh();
+				});
+			}
 		}])
 		.controller('LinkedinNetworksController', ['$scope', 'Linkediner', function($scope, Linkediner) {
 			function ReloadLinkedinData(){
@@ -81,9 +85,13 @@
 			    }
 			);
 		}])
-		.controller('SendAndShareController',['$scope', '$rootScope', function($scope, $rootScope){
+		.controller('SendAndShareController',['$scope', '$rootScope','geolocation', '$http', function($scope, $rootScope, geolocation, $http){
 			$scope.sentTo = [];
 			$scope.message = '';
+			$scope.location = {
+				"isShown":false,
+				"position":undefined
+			}
 			var providersFilter = function(){
 				var __tmp = [];
 				return $scope.networks.filter(function(n){
@@ -99,23 +107,51 @@
 			$scope.$on('networksEdited',function(){
 				$scope.providers = providersFilter();
 			});
-			$scope.__defineGetter__('twitterCounter',function(){
-				return 140-$scope.message.length;
-			});
-			$scope.__defineGetter__('facebookCounter',function(){
-				return 420-$scope.message.length;
-			});
-			$scope.__defineGetter__('googlePlusCounter',function(){
-				return 14000-$scope.message.length;
-			});
-			$scope.__defineGetter__('linkedinCounter',function(){
-				return 600-$scope.message.length;
-			});
+			var detectLocation = function DetectLocationForShare(cb){
+				geolocation.getLocation().then(function(data){
+
+					$http.get('/admin/geocoder',{"params":{"lat":data.coords.latitude, "long":data.coords.longitude}})
+						.success(function SuccessHandler(res){
+							cb(null, res);
+						}).error(function ErrorHandler(res){
+							cb(res);
+						})
+			    });
+			};
+			var CounterProvider = function($scope, aLenght){return function(){return aLenght-$scope.message.length;}}
+			$scope.__defineGetter__('twitterCounter',CounterProvider($scope, 140));
+			$scope.__defineGetter__('facebookCounter',CounterProvider($scope, 420));
+			$scope.__defineGetter__('googlePlusCounter',CounterProvider($scope, 14000));
+			$scope.__defineGetter__('linkedinCounter',CounterProvider($scope, 600));
 			$scope.$on('setMacroOnSharebox',function($event, aMacro){
-				$scope.message += "\n" + aMacro.content;
+				$scope.message += ($scope.message.length?"\n":"") + aMacro.content;
 			});
 			$scope.beforeMacroOpen = function(){
 				$rootScope.$broadcast('giveCurrentMessage',$scope.message);
+			}
+			$scope.showLocation = function ShowLocation(){
+				if($scope.location.isShown){
+					$scope.location.isShown = false;
+				}else{
+					if(!$scope.location.position){
+						detectLocation(function(err, res){
+							if(err)return alert('Error: ' + err.msg);
+							$scope.$safeApply(function(){
+								$scope.location.position = res.location;
+							});
+						});
+					}
+					$scope.location.isShown = true;
+				}
+			}
+			$scope.link = {
+				add:function(){
+					$scope.link.value = 'http://';
+				},
+				destroy:function(){
+					$scope.link.value = '';
+				},
+				value:''
 			}
 		}])
 		.controller('MacrosController',['$scope', '$http', '$rootScope', function($scope, $http, $rootScope){	
