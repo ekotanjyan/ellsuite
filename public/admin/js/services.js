@@ -46,7 +46,7 @@ define(['angular','LinkedIn', 'Codebird'], function (angular,IN, Codebird) {
 						if(res.status !== "connected"){
 							Facebook.login(function(){
 								FetchFacebookData(cb);
-							});
+							}, {scope:'read_stream,publish_stream,offline_access'});
 						}else{
 							FetchFacebookData(cb);
 						}

@@ -39,7 +39,7 @@
 				if(_schedule){
 					$interval.cancel(_schedule);
 				}
-				if(aMin === 0){
+				if(aMin !== 0){
 					_schedule = $interval($scope.networks.refresh, aMin);
 				}
 			}
