@@ -51,7 +51,7 @@ require.config({
         "angularGeolocation":{
             "deps":['angular']
         },
-        "ngFlow":{
+        "angular-file-upload":{
             "deps":['angular']
         }
     },
