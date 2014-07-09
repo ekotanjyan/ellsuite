@@ -50,6 +50,9 @@ require.config({
         },
         "angularGeolocation":{
             "deps":['angular']
+        },
+        "ngFlow":{
+            "deps":['angular']
         }
     },
     "priority": [
@@ -76,6 +79,7 @@ require.config({
         "angular-salfapply":'libs/angular-safeapply/safe-apply',
         "Codebird":'libs/codebird-js/codebird',
         'ui.multiselect':'libs/isteven-angular-multiselect/angular-multi-select',
+        "angular-file-upload":_ModuelPrefix('angular-file-upload'),
         "angularUnderscore": _ModuelPrefix('angular-underscore')
     }
 });

@@ -9,53 +9,101 @@
 		<button ng-click="networks.refresh()" class="btn btn-primary btn-outline">
 			<i class="fa fa-refresh"></i>
         </button>
-		<button class="btn btn-primary btn-outline">
-			<i class="fa fa-clock-o"></i>
-		</button>
+        <li class="dropdown btn btn-outline btn-primary  ">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+    			<i class="fa fa-clock-o"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-alerts">
+                <li>
+                    <a ng-click="networks.schenduleFor(0)">
+                        <div>
+                            Manual
+                        </div>
+                    </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a ng-click="networks.schenduleFor(2*60*1000)">
+                        <div>
+                            Every 2 minutes
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a ng-click="networks.schenduleFor(5*60*1000)">
+                        <div>
+                            Every 5 minutes
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a ng-click="networks.schenduleFor(10*60*1000)">
+                        <div>
+                            Every 10 minutes
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a ng-click="networks.schenduleFor(15*60*1000)">
+                        <div>
+                            Every 15 minutes
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a ng-click="networks.schenduleFor(30*60*1000)">
+                        <div>
+                            Every 30 minutes
+                        </div>
+                    </a>
+                </li>
+            </ul>
+            
+        </li>
     </div>
     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
         <input ng-model="grid" type="text" id="gridslider" el-grid-slider slider  options="gridOptions" />
     </div>
 	<div class="col-xs-12 col-sm-6 col-md-3 col-lg-2">
 	    <li class="dropdown btn btn-block btn-outline btn-primary  ">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        Add Network  <i class="fa fa-caret-down"></i>
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                Add Network  <i class="fa fa-caret-down"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-alerts">
+                <li>
+                    <a ng-click="create('facebook')">
+                        <div>
+                            <i class="fa fa-facebook fa-fw"></i> Facebook
+                        </div>
                     </a>
-                    <ul class="dropdown-menu dropdown-alerts">
-                        <li>
-                            <a ng-click="create('facebook')">
-                                <div>
-                                    <i class="fa fa-facebook fa-fw"></i> Facebook
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a ng-click="create('twitter')">
-                                <div>
-                                    <i class="fa fa-twitter fa-fw"></i> Twitter
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a ng-click="create('linkedin')">
-                                <div>
-                                    <i class="fa fa-linkedin fa-fw"></i> Linkedin
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a ng-click="create('google-plus')">
-                                <div>
-                                    <i class="fa fa-google-plus fa-fw"></i> Google+
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                    
                 </li>
+                <li class="divider"></li>
+                <li>
+                    <a ng-click="create('twitter')">
+                        <div>
+                            <i class="fa fa-twitter fa-fw"></i> Twitter
+                        </div>
+                    </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a ng-click="create('linkedin')">
+                        <div>
+                            <i class="fa fa-linkedin fa-fw"></i> Linkedin
+                        </div>
+                    </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a ng-click="create('google-plus')">
+                        <div>
+                            <i class="fa fa-google-plus fa-fw"></i> Google+
+                        </div>
+                    </a>
+                </li>
+            </ul>
+            
+        </li>
 	</div>
 	<div ng-if="networks.length" class="col-xs-12 col-sm-6 col-md-3 col-lg-2">
 		<div class="panel row panel-primary network-icons-pane">
@@ -111,8 +159,7 @@
                         default-label="Choose Profile"
                         input-model="providers"
                         helper-elements="none"
-                        item-label="type"
-                        tick-property="isOn"></multi-select>
+                        item-label="type"></multi-select>
                     <i class="fa fa-{{network.type}} fa-fw" ng-repeat="network in sentTo"></i>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 share-input-box">
@@ -140,6 +187,10 @@
                         <button type="button" ng-click="link.add()" class="btn btn-success" title="Location">
                             <i class="fa fa-link"></i>
                         </button>
+                        <button type="button"  ng-click="file.attach()" class="btn btn-success btn-file" title="File">
+                            <i class="fa fa-file"></i>
+                            <input ng-file-select="" type="file" multiple="" type="file">
+                        </button>
                         <button type="button" title="Macros" data-target="#macros" data-toggle="modal" ng-click="beforeMacroOpen()" class="btn btn-success">
                             <i class="fa fa-floppy-o"></i>
                         </button>
@@ -152,6 +203,14 @@
                             <button type="button" class="btn btn-danger" ng-click="link.destroy()"><i class="fa fa-ban"></i></button>
                         </span>
                     </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  uploading-images" ng-if="uploader.queue.length">
+                        <div class="pull-left img-thumbnail" ng-repeat="item in uploader.queue">
+                            <div class="img" ng-thumb="{ file: item.file, height: 65 }">
+                                <canvas/>
+                                <button type="button" ng-click="item.remove()" class="close"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            </div>
+                        </div>
                 </div>
                 <div ng-if="location.isShown" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     You are here -  <i class="fa fa-location-arrow"></i> 

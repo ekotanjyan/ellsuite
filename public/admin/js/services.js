@@ -48,6 +48,9 @@ define(['angular','LinkedIn', 'Codebird'], function (angular,IN, Codebird) {
 							FetchFacebookData(cb);
 						}
 					});
+				},
+				"userInfo":function(cb){
+					
 				}
 			}
 		}])

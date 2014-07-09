@@ -13,6 +13,7 @@ define([
 	'angular-salfapply',
 	'ui.multiselect',
 	'angularResource',
+	'angular-file-upload',
 	'angularGeolocation',
 	], function (angular, filters, services, directives, controllers, angularRoute, angularFacebook, angularUnderscore, IN) {
 		'use strict';
@@ -30,6 +31,7 @@ define([
 			'SafeApply',
 			'googleplus',
 			'ngResource',
+			'angularFileUpload',
 			'multi-select',
 			'geolocation',
 		])

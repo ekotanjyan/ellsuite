@@ -5,7 +5,7 @@
 
 	return angular.module('ellsuite.controllers', ['ellsuite.services'])
 		// Sample controller where service is being used
-		.controller('SocialShareController', ['$scope', 'Facebook', '$rootScope', function ($scope, Facebook, $rootScope) {
+		.controller('SocialShareController', ['$scope', 'Facebook', '$rootScope', '$interval', function ($scope, Facebook, $rootScope, $interval) {
 			$scope.networks = [];
 			$scope.grid = 2;
 			$scope.create = function CreatNetwork(type){
@@ -21,7 +21,7 @@
 				return _return;
 			}
 			$scope.close = function RemoveNetwork(index){
-				$scope.networks.splice(index,1);
+				$scope.networks.splice(index, 1);
 			};
 			$scope.$watchCollection	('networks',function(){
 				$scope.$broadcast('networksEdited');
@@ -32,9 +32,16 @@
 				$scope.isFacebookReady = true;
 			});
 			$scope.networks.refresh = function(){
-				angular.forEach($scope.networks,function(network){
-					network.refresh();
-				});
+				$rootScope.$broadcast('refreshFeed');
+			}
+			var _schedule;
+			$scope.networks.schenduleFor = function(aMin){
+				if(_schedule){
+					$interval.cancel(_schedule);
+				}
+				if(aMin === 0){
+					_schedule = $interval($scope.networks.refresh, aMin);
+				}
 			}
 		}])
 		.controller('LinkedinNetworksController', ['$scope', 'Linkediner', function($scope, Linkediner) {
@@ -45,6 +52,9 @@
 					});				
 				})
 			};
+			$scope.$on('refreshFeed', function(){
+				$scope.refresh();
+			});
 			$scope.refresh = ReloadLinkedinData;
 		}])
 		.controller('FacebookNetworksController', ['$scope', 'Facebooker', function($scope, Facebooker) {
@@ -55,14 +65,23 @@
 					});
 				});
 			}
+			$scope.$on('refreshFeed', function(){
+				$scope.refresh();
+			});
 			$scope.refresh = RefreshFacebookFeed;
 		}])
 		.controller('GooglePlusNetworksController', ['$scope','Google',function($scope, Google){
-			Google.fetch(function(res){
-				$scope.$safeApply(function(){
-					debugger;
-					$scope.network.items = res.items || [];
+			var refresh = function RefreshGooglePlus(){
+				Google.fetch(function(res){
+					$scope.$safeApply(function(){
+						debugger;
+						$scope.network.items = res.items || [];
+					});
 				});
+			}
+			$scope.refresh = refresh;
+			$scope.$on('refreshFeed', function(){
+				$scope.refresh();
 			});
 		}])
 		.controller('TwitterNetworksController', ['$scope', 'Codebird', function ($scope, cb) {
@@ -84,8 +103,12 @@
 			        );
 			    }
 			);
+			$scope.$on('refreshFeed', function(){
+				$scope.refresh();
+			});
 		}])
-		.controller('SendAndShareController',['$scope', '$rootScope','geolocation', '$http', function($scope, $rootScope, geolocation, $http){
+		.controller('SendAndShareController',
+			['$scope', '$rootScope','geolocation', '$http', '$fileUploader', function($scope, $rootScope, geolocation, $http, $fileUploader){
 			$scope.sentTo = [];
 			$scope.message = '';
 			$scope.location = {
@@ -124,7 +147,7 @@
 			$scope.__defineGetter__('googlePlusCounter',CounterProvider($scope, 14000));
 			$scope.__defineGetter__('linkedinCounter',CounterProvider($scope, 600));
 			$scope.$on('setMacroOnSharebox',function($event, aMacro){
-				$scope.message += ($scope.message.length?"\n":"") + aMacro.content;
+				$scope.message += ($scope.message.length?" ":"") + aMacro.content;
 			});
 			$scope.beforeMacroOpen = function(){
 				$rootScope.$broadcast('giveCurrentMessage',$scope.message);
@@ -153,6 +176,11 @@
 				},
 				value:''
 			}
+			window.uploader = $scope.uploader = $fileUploader.create({
+				scope: $scope,
+				autoUpload:true,
+				url: '/admin/socialshare/attachImage'
+			});
 		}])
 		.controller('MacrosController',['$scope', '$http', '$rootScope', function($scope, $http, $rootScope){	
 			var __macroPath = '/admin/macro'; 

@@ -110,6 +110,12 @@ module.exports = [
 		}
 	],
 	[
+		'post','/socialshare/attachImage',['admin'],
+		function(req, res){
+			res.send(200);	
+		}
+	],
+	[
 		'get','/*',['admin'],
 		function(req, res){
 			res.render('admin/index',{});
