@@ -16,28 +16,31 @@ define(['angular','LinkedIn', 'Codebird'], function (angular,IN, Codebird) {
 					});
 				});
 			};
-			return {
+			var Google = {
+				me:undefined,
 				fetch:function FetchGoogle(cb){
 					GooglePlus.getUser().then(function(res){
 						if(res.error){
 							GooglePlus.login().then(function (authResult) {
-					            FetchActivites(cb);
+					            GooglePlus.getUser().then(function(res){
+						            FetchActivites(cb);
+						            Google.me = res;
+					            });
 					        }, function (err) {
 					            console.log(err);
 					            cb(err);
 					        });
 						}else{
 				            FetchActivites(cb);
+				            Google.me = res;
 						}
 					});
 				}
 			}
+			return Google;
 		}])
 		.factory('Facebooker', ['Facebook',function (Facebook) {
-			function FetchFacebookData(cb){
-				Facebook.api('/me/home',cb);
-			}
-			return {
+			var Facebooker = {
 				"fetch":function FetchFacebookFeed(cb){
 					Facebook.getLoginStatus(function(res){
 						if(res.status !== "connected"){
@@ -49,21 +52,45 @@ define(['angular','LinkedIn', 'Codebird'], function (angular,IN, Codebird) {
 						}
 					});
 				},
-				"userInfo":function(cb){
-					
+				"me":undefined
+			}
+			function FetchFacebookData(cb){
+				var __tmp = {};
+				var __handler = function(feed, me){
+					if(feed){
+						__tmp.feed = feed;
+					}
+					if(me){
+						__tmp.me = me;
+					}
+					if(__tmp.feed && __tmp.me){
+						Facebooker.me = __tmp.me;	
+						cb(__tmp.feed);
+					}
+				}
+				Facebook.api('/me/home', function(res){
+					__handler(res);
+				});
+				if(Facebooker.me){
+					__handler(undefined, Facebooker.me)
+				}else{
+					Facebook.api('/me', function(res){
+						__handler(undefined, res);
+					});
 				}
 			}
+			return Facebooker;
 		}])
 		.factory('Linkediner', ['LinkedinAPI',function (IN) {
+			function ReloadLinkedinData(callback){
+				IN.API.NetworkUpdates("me")
+					.fields([''])
+				    .result(function(res){
+						callback(res);
+					});
+			};
 			return {
 				"fetch":function(cb){
-					function ReloadLinkedinData(callback){
-						IN.API.NetworkUpdates("me")
-							.fields([''])
-						    .result(function(res){
-								callback(res);
-							});
-					};
 					if(IN.User.isAuthorized()){
 						ReloadLinkedinData(cb);
 					}else{

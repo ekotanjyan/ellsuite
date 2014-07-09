@@ -152,15 +152,17 @@
             </div>
             <div class="modal-body row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <div class="alert alert-info" ng-if="!providers.length" role="alert">To share you must be connected network.</div>
+                    <div class="alert alert-info" ng-if="!providers.length" role="alert">To share you must be connected network.</div>
                     <multi-select ng-if="providers.length" class="input-xlarge"
-                        output-model="sentTo"
+                        output-model="$parent.sendTo"
                         button-label="type"
                         default-label="Choose Profile"
                         input-model="providers"
+                        tick-property="isOn"
                         helper-elements="none"
                         item-label="type"></multi-select>
-                    <i class="fa fa-{{network.type}} fa-fw" ng-repeat="network in sentTo"></i>
+                    <img ng-src="{{network.profile.picture}}"  height="32" ng-repeat="network in sendTo">
+                    <!-- <i class="fa fa-{{network.type}} fa-fw" ng-repeat="network in sentTo"></i> -->
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 share-input-box">
                     <textarea class="form-control" ng-model="message" rows="3"></textarea>

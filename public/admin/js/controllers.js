@@ -56,12 +56,15 @@
 				$scope.refresh();
 			});
 			$scope.refresh = ReloadLinkedinData;
+			
 		}])
 		.controller('FacebookNetworksController', ['$scope', 'Facebooker', function($scope, Facebooker) {
+			$scope.network.profile = {};
 			function RefreshFacebookFeed(){
 				Facebooker.fetch(function(feed){
 					$scope.$parent.$safeApply(function(){
 						$scope.network.items = feed.data;
+						$scope.network.profile.picture = 'https://graph.facebook.com/v2.0/' + Facebooker.me.id + '/picture'
 					});
 				});
 			}
@@ -71,11 +74,12 @@
 			$scope.refresh = RefreshFacebookFeed;
 		}])
 		.controller('GooglePlusNetworksController', ['$scope','Google',function($scope, Google){
+			$scope.network.profile = {};
 			var refresh = function RefreshGooglePlus(){
 				Google.fetch(function(res){
 					$scope.$safeApply(function(){
-						debugger;
 						$scope.network.items = res.items || [];
+						$scope.network.profile = Google.me;
 					});
 				});
 			}
@@ -109,7 +113,7 @@
 		}])
 		.controller('SendAndShareController',
 			['$scope', '$rootScope','geolocation', '$http', '$fileUploader', function($scope, $rootScope, geolocation, $http, $fileUploader){
-			$scope.sentTo = [];
+			$scope.sendTo = [];
 			$scope.message = '';
 			$scope.location = {
 				"isShown":false,
