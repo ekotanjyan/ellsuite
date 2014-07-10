@@ -37,7 +37,7 @@ define([
 		])
 		.config(['FacebookProvider','GooglePlusProvider', function(FacebookProvider,GooglePlusProvider, cb) {
 			// Init Facebook module.
-			FacebookProvider.init('653951331362826');
+			FacebookProvider.init('255954707893574');
 			// Init LinkedIn module.
 			IN.init({
 				"api_key":"75idosjcop3ki9",

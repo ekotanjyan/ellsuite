@@ -18,6 +18,16 @@ define(['angular', 'services', 'angularSlider'], function(angular, services) {
         }
       };
  		})
+    .directive('elResetShare', ['$rootScope',function ($rootScope) {
+      return {
+        restrict: 'A',
+        link: function (scope, iElement, iAttrs) {
+          iElement.on('hide',function(){
+            $rootScope.$broadcast('resetForm');
+          });
+        }
+      };
+    }])
     .directive('ngThumb', ['$window', function($window) {
         var helper = {
             support: !!($window.FileReader && $window.CanvasRenderingContext2D),
