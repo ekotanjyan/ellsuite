@@ -46,7 +46,7 @@ define(['angular','LinkedIn', 'Codebird'], function (angular,IN, Codebird) {
 						if(res.status !== "connected"){
 							Facebook.login(function(){
 								FetchFacebookData(cb);
-							}, {scope:'read_stream,publish_stream,offline_access'});
+							}, {scope:'read_stream,user_likes,user_status,offline_access,user_photos,publish_stream,publish_actions,manage_pages,photo_upload,user_hometown,user_location,user_checkins,friends_likes,friends_photos,friends_status,friends_videos,share_item'});
 						}else{
 							FetchFacebookData(cb);
 						}
@@ -82,14 +82,22 @@ define(['angular','LinkedIn', 'Codebird'], function (angular,IN, Codebird) {
 			return Facebooker;
 		}])
 		.factory('Linkediner', ['LinkedinAPI',function (IN) {
-			function ReloadLinkedinData(callback){
-				IN.API.NetworkUpdates("me")
-					.fields([''])
-				    .result(function(res){
-						callback(res);
+			var ReloadLinkedinData = function ReloadLinkedinData(callback){
+				if(Linkediner.me){
+					IN.API.NetworkUpdates("me")
+						.fields([''])
+					    .result(function(res){
+							callback(res);
+						});
+				}else{
+					IN.API.Profile("me").result(function(res){
+						Linkediner.me = res['values'][0];
+						ReloadLinkedinData(callback);
 					});
+				}
 			};
-			return {
+			var Linkediner = {
+				"me":undefined,
 				"fetch":function(cb){
 					if(IN.User.isAuthorized()){
 						ReloadLinkedinData(cb);
@@ -100,6 +108,7 @@ define(['angular','LinkedIn', 'Codebird'], function (angular,IN, Codebird) {
 					}
 				}
 			};
+			return Linkediner;
 		}])
 		.factory('Twitter', ['$http',function ($http) {
 			

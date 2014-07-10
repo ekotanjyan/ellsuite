@@ -45,10 +45,13 @@
 			}
 		}])
 		.controller('LinkedinNetworksController', ['$scope', 'Linkediner', function($scope, Linkediner) {
+			$scope.network.profile = {};
 			function ReloadLinkedinData(){
 				Linkediner.fetch(function(res){
 					$scope.$parent.$safeApply(function(){
 						$scope.network.items = res.values;
+						$scope.network.profile = Linkediner.me;
+						$scope.network.profile.picture = Linkediner.me.pictureUrl;
 					});				
 				})
 			};

@@ -107,7 +107,7 @@
 	</div>
 	<div ng-if="networks.length" class="col-xs-12 col-sm-6 col-md-3 col-lg-2">
 		<div class="panel row panel-primary network-icons-pane">
-            <button  ng-class="{'pull-left':$last}" ng-repeat="network in networks" type="button" class="btn btn-{{network.type}} btn-default"><i class="fa fa-{{network.type}}"></i></button>
+            <img ng-src="{{network.profile.picture}}"  height="32" ng-repeat="network in networks">
         </div>
 	</div>
     <div class="col-xs-12 col-sm-6 col-md-3 col-lg-2">
