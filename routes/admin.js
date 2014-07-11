@@ -100,9 +100,15 @@ module.exports = [
 							"msg":err
 						});
 					}else{
+						var _location;
+						if(location['results'][location['results']['length'] - 2]){
+							_location = location['results'][location['results']['length']-2]['formatted_address'];
+						}else{
+							_location = location['results'][0]['formatted_address'];
+						}
 						return res.json(200, {
 							"success":true,
-							"location":location['results'][0]['formatted_address']
+							"location":_location
 						});
 					}
 				})

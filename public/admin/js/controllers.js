@@ -116,11 +116,15 @@
 		}])
 		.controller('SendAndShareController',
 			['$scope', '$rootScope','geolocation', '$http', '$fileUploader', function($scope, $rootScope, geolocation, $http, $fileUploader){
-			$scope.on('resetForm', function(){
-				$scope.sendTo = [];
-				$scope.message = '';
-				$scope.location.isShown = false;
-				$scope.link.value = '';
+			$scope.$on('resetForm', function(){
+				$scope.$safeApply(function(){
+					$scope.sendTo = [];
+					$scope.message = '';
+					$scope.location.isShown = false;
+					$scope.link.value = '';
+					$scope.uploader.clearQueue();
+					angular.forEach($scope.providers,function(_p){_p.isOn = false;});
+				});
 			});
 			$scope.sendTo = [];
 			$scope.message = '';

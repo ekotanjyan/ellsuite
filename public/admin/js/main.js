@@ -1,7 +1,7 @@
 var _ModuelPrefix  = function(name){return ['libs/',name,'/',name].join('')};
 require.config({
     "baseUrl": "/admin/js/",
-    "waitSeconds":0,
+    "waitSeconds":10000,
     "shim": {
         "angular": {
             "exports": "angular"

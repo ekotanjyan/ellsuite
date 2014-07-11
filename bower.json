@@ -20,7 +20,7 @@
     "angular-safeapply": "~1.0.4",
     "codebird-js": "~2.5.0",
     "angularjs-geolocation": "0.1.1",
-    "isteven-angular-multiselect": "*",
-    "angular-file-upload": "~0.5.7"
+    "angular-file-upload": "~0.5.7",
+    "isteven-angular-multiselect":"./public/js/angular-multi-select-master"
   }
 }

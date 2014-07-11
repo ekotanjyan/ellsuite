@@ -11,7 +11,7 @@ define(['angular', 'services', 'angularSlider'], function(angular, services) {
         'controller':function($scope){
           $scope.gridOptions = {
             from:1,
-            to:10,
+            to:4,
             smooth:true,
             step:1
           }
@@ -22,7 +22,7 @@ define(['angular', 'services', 'angularSlider'], function(angular, services) {
       return {
         restrict: 'A',
         link: function (scope, iElement, iAttrs) {
-          iElement.on('hide',function(){
+          iElement.on('hide.bs.modal',function(){
             $rootScope.$broadcast('resetForm');
           });
         }
