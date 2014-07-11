@@ -22,7 +22,7 @@ require.config({
           "deps":['angularSanitize']
         },
         'angularSlider':{
-            "deps":['angular','angularSanitize']
+            "deps":['angular','angularSanitize', 'jquery']
         },
         'angularSanitize':{
           "deps":["angular"]

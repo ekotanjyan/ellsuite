@@ -7,6 +7,9 @@ define(['angular', 'app'], function(angular, app) {
 			templateUrl: '/admin/views/root.html',
 			controller: 'SocialShareController'
 		});
+		$routeProvider.when('/admin/',{
+			templateUrl: '/admin/views/index.html'
+		});
 		$routeProvider.when('/admin/logout',{
 			controller:function(){
 				$http.get({'url':'/admin/logout','method':'POST'})
