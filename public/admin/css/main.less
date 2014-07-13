@@ -56,7 +56,7 @@
 }
 .portlet{
     &.google-plus{
-        .grider(#737373);
+        .grider(#dd4c3a);
     }
     &.linkedin{
         .grider(#007BB6);
@@ -64,8 +64,28 @@
     &.twitter{
         .grider(#55ACEE);
     }
-    &.faccebook{
-        .grider(blue);
+    &.facebook{
+        .grider(#3B5998);
+        .portlet{
+            .grider(#bfcad1);
+            &:hover{
+                .grider(#1fb5ad);
+            }
+            .portlet-title{
+                padding-top: 4px;
+                padding-bottom: 4px;
+                a{
+                    color: #fff;
+                    font-size: 14px;
+                    text-decoration: none;
+                }
+                .from-now{
+                    color:#FFF;
+                    text-transform: none; 
+                    margin-top: 1px;
+                }
+            }
+        }
     }
 }
 .grid-controller{

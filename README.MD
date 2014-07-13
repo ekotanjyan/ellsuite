@@ -1,0 +1,32 @@
+Techos
+	-	Angular
+		- Resourses
+		-	Cookies
+		-	Scenario
+		- Animate
+		-	Route
+		- Geoloaction
+		- Loader bar
+		- File Upload
+		- NG-Slider
+		- Sanitize
+	-	RequireJS
+	-	MomentJS
+	-	Facebook SDK
+	-	Twitter SDK
+	-	Linkedin SDK
+	- Google SDK
+	- Bower
+	- jQuery
+		-	UI
+		-	etc......
+ 	- Bootstrap
+	-	UnderscoreJS
+	- NodeJS
+	-	MongooseJS
+	-	Resdis
+	-	GruntJS
+	-	SASS
+	-	EctJS
+	-	FontAwesome
+	-	Simple Icon Package

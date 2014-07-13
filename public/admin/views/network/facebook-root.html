@@ -21,55 +21,8 @@
         </div>
     </div>
     <div class="portlet-body">
-        <ul class="chat" ng-if="network.items.length">
-            <li ng-repeat="item in network.items" class="clearfix" ng-class='{left:$even,right:$odd}'>
-                <span class="chat-img pull-{{$even?'left':'right'}}">
-                    <img height="50" ng-src="https://graph.facebook.com/v2.0/{{item.from.id}}/picture" alt="{{item.from.name}}" class="img-circle">
-                </span>
-                <div class="chat-body clearfix">
-                    <div class="header" ng-if="$even">
-                        <a href="https://www.facebook.com/profile.php?id={{item.from.id}}" target="_blank">
-                            <strong class="primary-font">
-                                {{item.from.name}}
-                            </strong>
-                        </a> 
-                        <small class="pull-right text-muted">
-                            <i class="fa fa-clock-o fa-fw"></i> <span am-time-ago="item.created_time"></span>
-                        </small>
-                    </div>
-                    <div class="header" ng-if="$odd">
-                        <small class="text-muted">
-                            <i class="fa fa-clock-o fa-fw"></i> <span am-time-ago="item.created_time"></span>
-                        </small>
-                        <a href="https://www.facebook.com/profile.php?id={{item.from.id}}" target="_blank">
-                            <strong class="pull-right primary-font">
-                                 {{item.from.name}}
-                            </strong>
-                        </a> 
-                    </div>
-                    <div class="item item-body">
-                        <p ng-if="item.story">{{item.story}}</p>
-                        <p>{{item.message}}</p>
-                        <a ng-if="item.picture" ng-href="{{item.actions[0].link}}">
-                            <img  ng-src="{{ item.picture }}"/>
-                        </a>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                          <a el-fb-like>
-                            Like
-                        </a>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        <a>
-                            Comment
-                        </a>
-
-                    </div>
-                </div>
-            </li>
-        </ul>
+        <div ng-repeat="item in network.items" el-facebook-article>
+        </div>
         <em ng-if="!network.items.length" class="italic">Loading ...</em>
     </div>
 </div>

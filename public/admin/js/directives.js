@@ -85,5 +85,17 @@ define(['angular', 'services', 'angularSlider'], function(angular, services) {
         },
         "name":"elNetworker"
       }
+    }])
+    .directive('elFacebookArticle', ['$templateCache', function ($templateCache) {
+        return {
+            "restrict": 'A',
+            "templateUrl":"/admin/views/network/facebook-article.html",
+            link: function ($scope, $element, $attrs) {
+                
+            },
+            controller:function($scope){
+
+            }
+        };
     }]);
 });
