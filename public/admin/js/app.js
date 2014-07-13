@@ -13,8 +13,10 @@ define([
 	'angular-salfapply',
 	'ui.multiselect',
 	'angularResource',
+	"angularLoader",
 	'angular-file-upload',
 	'angularGeolocation',
+	'angularAnimate'
 	], function (angular, filters, services, directives, controllers, angularRoute, angularFacebook, angularUnderscore, IN) {
 		'use strict';
 
@@ -32,25 +34,29 @@ define([
 			'googleplus',
 			'ngResource',
 			'angularFileUpload',
+			'angular-loading-bar',
+			'ngAnimate',
 			'multi-select',
 			'geolocation',
 		])
-		.config(['FacebookProvider','GooglePlusProvider', function(FacebookProvider,GooglePlusProvider, cb) {
+		.config(['FacebookProvider','GooglePlusProvider','cfpLoadingBarProvider', function(FacebookProvider,GooglePlusProvider, cfpLoadingBarProvider) {
+			// Turn spinner off for loading bar
+			cfpLoadingBarProvider.includeSpinner = false;
+			
 			// Init Facebook module.
 			FacebookProvider.init('255954707893574');
+			
 			// Init LinkedIn module.
 			IN.init({
 				"api_key":"75idosjcop3ki9",
 				"authorize":true
 			});
-			window.brr = IN;
 			// Init Google Plus module.
 			GooglePlusProvider.init({
 				clientId: '457353786060-7vhqovi3o4n7qn0r45ouu1v3lbfuj4ck.apps.googleusercontent.com',
 				apiKey: 'AIzaSyA3eeNYBEkPOe9ddMYNdOL4NijSU3ygfAo'
 			});
 		}])
-		console.log('ON app.js');
 });
 
 /**

@@ -136,10 +136,12 @@
             ng-repeat="network in networks"  
             el-networker="{{network.type}}"
             class=" stream 
+                    repeated-item
                     col-xs-{{grid | grider}}   
                     col-sm-{{grid | grider}} 
                     col-md-{{grid | grider}} 
                     col-lg-{{grid | grider}}">
+                    
         </div>
     </div>
 </div>
@@ -153,7 +155,7 @@
             <div class="modal-body row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <div class="alert alert-info" ng-if="!providers.length" role="alert">To share you must be connected network.</div>
-                    <multi-select ng-if="providers.length" class="input-xlarge"
+                    <multi-select ng-if="providers.length" 
                         output-model="$parent.sendTo"
                         button-label="type"
                         default-label="Choose Profile"

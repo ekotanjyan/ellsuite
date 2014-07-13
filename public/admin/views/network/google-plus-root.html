@@ -1,32 +1,26 @@
-<div ng-controller="GooglePlusNetworksController" class="panel panel-primary " 
+<div ng-controller="GooglePlusNetworksController" class="portlet box google-plus" 
             ng-init="refresh()">
-    <div class="panel-heading">
+    <div class="portlet-title">
         <i class="fa fa-{{network.type}} fa-fw"></i>
         {{network.type}}
         <div class="btn-group pull-right">
-            <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                <i class="fa fa-chevron-down"></i>
-            </button>
-            <ul class="dropdown-menu slidedown">
-                <li>
-                    <a ng-click="refresh()">
-                        <i class="fa fa-refresh fa-fw"></i> Refresh
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fa fa-filter fa-fw"></i> Filter
-                    </a>
-                </li>
-                <li>
-                    <a ng-click="close($index)">
-                        <i class="fa fa-times fa-fw"></i> Close
-                    </a>
-                </li>
-            </ul>
+            <a class="btn btn-md grid-controller" ng-click="showTools()">
+                <i class="icon-settings el-grid-icon"></i>
+            </a>
+        </div>
+        <div class="tool pull-right btn-group check-element sample-show-hide" ng-show="isToolsShown">
+            <a  class="btn" ng-click="refresh()">
+                <i class="icon-refresh"></i>
+            </a>
+            <a class="btn">
+                <i class="icon-eye"></i>
+            </a>
+            <a class="btn" ng-click="close($index)">
+                <i class="icon-close"></i>
+            </a>
         </div>
     </div>
-    <div class="panel-body">
+    <div class="portlet-body">
         <span class="chat-img" ng-if="network.items.length">
             <img height="50" ng-src="{{network.items[0].actor.image.url}}" alt="{{network.items[0].actor.displayName}}" class="img-circle">
         </span>
@@ -35,7 +29,7 @@
         </strong>
         <div class="clearfix"></div>
         <hr>
-        <ul class="chat" ng-if="network.items.length">
+        <ul class="chat repeated-item" ng-if="network.items.length">
             <li ng-repeat="item in network.items" class="clearfix">
                 <div class="chat-body clearfix">
                     <small class="pull-right text-muted">

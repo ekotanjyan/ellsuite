@@ -46,6 +46,8 @@
 		}])
 		.controller('LinkedinNetworksController', ['$scope', 'Linkediner', function($scope, Linkediner) {
 			$scope.network.profile = {};
+			$scope.isToolsShown = false;
+
 			function ReloadLinkedinData(){
 				Linkediner.fetch(function(res){
 					$scope.$parent.$safeApply(function(){
@@ -58,11 +60,15 @@
 			$scope.$on('refreshFeed', function(){
 				$scope.refresh();
 			});
+			$scope.showTools = function(){
+				$scope.isToolsShown = !$scope.isToolsShown; 
+			}
 			$scope.refresh = ReloadLinkedinData;
 			
 		}])
 		.controller('FacebookNetworksController', ['$scope', 'Facebooker', function($scope, Facebooker) {
 			$scope.network.profile = {};
+			$scope.isToolsShown = false;
 			function RefreshFacebookFeed(){
 				Facebooker.fetch(function(feed){
 					$scope.$parent.$safeApply(function(){
@@ -74,10 +80,14 @@
 			$scope.$on('refreshFeed', function(){
 				$scope.refresh();
 			});
+			$scope.showTools = function(){
+				$scope.isToolsShown = !$scope.isToolsShown; 
+			}
 			$scope.refresh = RefreshFacebookFeed;
 		}])
 		.controller('GooglePlusNetworksController', ['$scope','Google',function($scope, Google){
 			$scope.network.profile = {};
+			$scope.isToolsShown = false;
 			var refresh = function RefreshGooglePlus(){
 				Google.fetch(function(res){
 					$scope.$safeApply(function(){
@@ -90,9 +100,14 @@
 			$scope.$on('refreshFeed', function(){
 				$scope.refresh();
 			});
+			$scope.showTools = function(){
+				$scope.isToolsShown = !$scope.isToolsShown; 
+			}
 		}])
 		.controller('TwitterNetworksController', ['$scope', 'Codebird', function ($scope, cb) {
 		// gets a request token
+			$scope.isToolsShown = false;
+
 			cb.__call(
 			    "oauth_requestToken",
 			    {oauth_callback: "oob"},
@@ -113,6 +128,9 @@
 			$scope.$on('refreshFeed', function(){
 				$scope.refresh();
 			});
+			$scope.showTools = function(){
+				$scope.isToolsShown = !$scope.isToolsShown; 
+			}
 		}])
 		.controller('SendAndShareController',
 			['$scope', '$rootScope','geolocation', '$http', '$fileUploader', function($scope, $rootScope, geolocation, $http, $fileUploader){
