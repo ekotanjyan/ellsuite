@@ -4423,3 +4423,16 @@ background-color:#d18c00;
 	margin-left:4px;
 }
 
+
+
+.dropdown-menu.dropdown-alerts,.dropdown-menu.dropdown-alerts li{padding:0;margin:0;list-style:none;text-align:left}
+.dropdown-menu.dropdown-alerts{width:100%}
+.well.well-sm.row.ng-scope .dropdown-toggle{color:#fff;background:none}
+.chat-body.clearfix{float:right;width:80%}
+.chat-img{display:block;float:left;width:19%}
+.portlet-body{clear:both}
+.portlet-body:after{clear:both;display:block;content:' ';width:100%}
+.chat-img{background:#f2f2f2;display:block;float:left;min-height:238px;height:auto!important;height:238px;padding-top:23px;text-align:center;width:19%}
+.btn-group.pull-right .grid-controller{background:none}
+.btn-group.pull-right .btn.btn-md.grid-controller{padding:0!important}
+.portlet-body .chat-body.clearfix{background:#f2f2f2;display:block;padding-top:23px;min-height:238px;height:auto!important;height:238px;padding-left:20px}
