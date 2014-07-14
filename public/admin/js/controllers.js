@@ -213,7 +213,7 @@
 			}
 			window.uploader = $scope.uploader = $fileUploader.create({
 				scope: $scope,
-				autoUpload:true,
+				autoUpload: true,
 				url: '/admin/socialshare/attachImage'
 			});
 		}])
