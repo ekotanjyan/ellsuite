@@ -11,10 +11,12 @@ define([
 	'angularGooglePlus',
 	'angular-moment',
 	'angular-salfapply',
+	'angularTrancute',
 	'ui.multiselect',
 	'angularResource',
 	"angularLoader",
 	'angular-file-upload',
+	// 'ngMaterial',
 	'angularGeolocation',
 	'angularAnimate'
 	], function (angular, filters, services, directives, controllers, angularRoute, angularFacebook, angularUnderscore, IN) {
@@ -37,6 +39,8 @@ define([
 			'angular-loading-bar',
 			'ngAnimate',
 			'multi-select',
+			'truncate',
+			// 'ngMaterial',
 			'geolocation',
 		])
 		.config(['FacebookProvider','GooglePlusProvider','cfpLoadingBarProvider', function(FacebookProvider,GooglePlusProvider, cfpLoadingBarProvider) {

@@ -230,8 +230,9 @@
 				$scope.macros.splice(index, 1);
 			};
 			$scope.useMacro = function(id){
-				var aMacro = $scope.macros.find(function(macro){
-					if(macro._id == id)return macro;
+				var aMacro;
+				angular.forEach($scope.macros, function(macro){
+					if(macro._id == id) aMacro = macro;
 				});
 				if(aMacro){
 					$rootScope.$broadcast('setMacroOnSharebox',aMacro);

@@ -91,11 +91,50 @@ define(['angular', 'services', 'angularSlider'], function(angular, services) {
             "restrict": 'A',
             "templateUrl":"/admin/views/network/facebook-article.html",
             link: function ($scope, $element, $attrs) {
-                
             },
-            controller:function($scope){
-
-            }
+            controller:['$scope', '$rootScope',function($scope, $rootScope){
+                $scope.readMore = function readMore($article){
+                    $rootScope.$broadcast('readArticleMore', $article);
+                };
+            }]
         };
+    }])
+    .directive('elFbReadMore',[function(){
+        var Functions = function($scope){
+            this.show = function showReadMore(){
+                $scope.isShown = true;
+            }
+            this.hide = function hideReadMore(){
+                $scope.isShown = false;
+            }
+            this.toggle = function toggleReadMore(){
+                $scope.isShown ? this.hide() : this.show();
+            }
+            this.setArticle = function setArticle(article, isSilent){
+                if($scope.article !== article){
+                    $scope.article = article;
+                }
+                if(!isSilent){
+                    this.show();
+                }
+            }
+        }
+        return {
+            "restrict":"A",
+            "replace":true,
+            "templateUrl":"/admin/views/network/facebook-readmore.html",
+            "link":function($scope, $element, $attrs){
+                $scope.$element = $element;
+            },
+            "controller":['$scope', '$rootScope',function elFBReadMoreController($scope){
+                var fn = new Functions($scope);
+                $scope.$watch('isShown', function(isShown){
+                    $scope.$element.modal(isShown ? 'show' : 'hide');
+                });
+                $scope.$on('readArticleMore',function($event, article){
+                    fn.setArticle(article);
+                });
+            }]
+        }
     }]);
 });

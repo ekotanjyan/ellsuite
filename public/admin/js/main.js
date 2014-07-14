@@ -85,6 +85,15 @@ require.config({
         "angularLoader":{
             "deps":['angular']
         },
+        'angularMaterial':{
+            "deps":[
+                'jquery',
+                'angularAnimate',
+                'angular',
+                'http://davo11122.kd.io/material-master/config/lib/angular-animate-sequence/angular-animate-sequence',
+                'http://davo11122.kd.io/material-master/config/lib/angular-animate-sequence/angular-animate-stylers'
+            ]
+        }
     },
     "priority": [
 		"angular"
@@ -113,6 +122,8 @@ require.config({
         "Codebird":'libs/codebird-js/codebird',
         'ui.multiselect':'libs/isteven-angular-multiselect/angular-multi-select',
         "angular-file-upload":_ModuelPrefix('angular-file-upload'),
+        "angularTrancute":"libs/angular-truncate/src/truncate",
+        "ngMaterial":'http://davo11122.kd.io/material-master/dist/material-design.min',
         "angularUnderscore": _ModuelPrefix('angular-underscore')
     }
 });
