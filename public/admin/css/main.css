@@ -67,10 +67,10 @@
 .box-carcass-title-left-pad{padding:5px 25px;celar:both;color:#fff;font-size:36px;font-family:latohairline,sans-serif}
 .item.item-body{font-family:tahoma_armenianregular,sans-serif}
 .close-custom-pop-up-window{display:block;width:65px;height:65px;background:#1fb5ad}
-[class^="icon-"],[class*=" icon-"]{font-family:'icomoon';speak:none;font-style:normal;font-weight:normal;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-.icon-close:before{content:"\e600"}
-.icon-link:before{content:"\e601"}
-.icon-location:before{content:"\e602"}
-.icon-photo:before{content:"\e603"}
-.icon-settings:before{content:"\e604"}
+[class^="icon2-"],[class*=" icon2-"]{font-family:'icomoon';speak:none;font-style:normal;font-weight:normal;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+.icon2-close:before{content:"\e600"}
+.icon2-link:before{content:"\e601"}
+.icon2-location:before{content:"\e602"}
+.icon2-photo:before{content:"\e603"}
+.icon2-settings:before{content:"\e604"}
 .fsx1{font-size:36px;color:#fff}
