@@ -20,8 +20,8 @@
 				<!--post-two-column-->
 				<div class="post-two-column">
 					<div class="post-two-column-group">
-						<div class="post-two-column-left">
-							<a ng-if="item.picture" ng-href="{{item.actions[0].link}}">
+						<div ng-if="item.picture" class="post-two-column-left">
+							<a  target="_blank" ng-href="{{item.actions[0].link}}">
 								<img  ng-src="{{ item.picture }}"/>
 							</a>
 						</div>
