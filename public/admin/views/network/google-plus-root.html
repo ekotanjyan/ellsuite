@@ -27,8 +27,6 @@
         <strong class="primary-font">
             {{network.items[0].actor.displayName}}
         </strong>
-        <div class="clearfix"></div>
-        <hr>
         <ul class="chat repeated-item" ng-if="network.items.length">
             <li ng-repeat="item in network.items" class="clearfix">
                 <div class="chat-body clearfix">
@@ -39,7 +37,6 @@
                     <div class="clearfix"></div>
                     <div ng-repeat="attach in item.object.attachments" class="item item-body">
                         <a target="_blank"ng-href="{{attach.url}}">{{attach.objectType}}</a>
-                        
                         <img ng-if="attach.image" ng-src="{{ attach.image.url}}" height="60" class="pull-right"/>
                     </div>
                 </div>

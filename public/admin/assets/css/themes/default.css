@@ -154,7 +154,6 @@ ul.page-sidebar-menu > li:hover > a {
   background: #4b4a4a;
 }
 ul.page-sidebar-menu > li.active > a {
-  background: #1fb5ad !important;
   border-top-color: transparent !important;
   color: #ffffff;
 }

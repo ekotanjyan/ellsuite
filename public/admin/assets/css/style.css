@@ -1282,7 +1282,7 @@ Portlets
 
 .portlet > .portlet-title {  
   margin-bottom: 15px;
-  border-bottom: 1px solid #eee;
+/*  border-bottom: 1px solid #eee;*/
 }
 
 .portlet > .portlet-title:after,
@@ -1569,7 +1569,7 @@ Box portlet
 
 .portlet.box > .portlet-title {  
    padding:8px 10px 2px 10px;
-   border-bottom: 1px solid #eee;
+/*   border-bottom: 1px solid #eee;*/
    color: #fff !important;
 }
 
@@ -1617,7 +1617,7 @@ Box portlet
 } 
 
 .portlet.box.blue {  
-   border: 1px solid #b4cef8;
+/*   border: 1px solid #b4cef8;*/
    border-top: 0;
 }
 
@@ -4384,7 +4384,7 @@ UI Loading
 background-color:#3372d1 !important;
 }
 .socialColor >a:hover{
-background-color:#1fb5ad !important;
+
 }.socialColor a i  {
 color: #FFF !important;
 }
@@ -4432,7 +4432,19 @@ background-color:#d18c00;
 .chat-img{display:block;float:left;width:19%}
 .portlet-body{clear:both}
 .portlet-body:after{clear:both;display:block;content:' ';width:100%}
-.chat-img{background:#f2f2f2;display:block;float:left;min-height:238px;height:auto!important;height:238px;padding-top:23px;text-align:center;width:19%}
+.chat-img{display:block;float:left;padding-top:23px;text-align:center;width:19%}
 .btn-group.pull-right .grid-controller{background:none}
 .btn-group.pull-right .btn.btn-md.grid-controller{padding:0!important}
-.portlet-body .chat-body.clearfix{background:#f2f2f2;display:block;padding-top:23px;min-height:238px;height:auto!important;height:238px;padding-left:20px}
+.portlet-body .chat-body.clearfix{display:block;padding-top:23px;padding-left:20px}
+.chat.repeated-item.ng-scope,.chat.repeated-item.ng-scope li{list-style:none}
+.portlet.box > .portlet-body{padding:0}
+.portlet-body .chat-body.clearfix,.chat-img{min-height:138px;height:auto!important;height:138px}
+.portlet-body .ng-scope .portlet{margin:0}
+.portlet-body .ng-scope{border:solid #fff 0px!important}
+.portlet.box > .portlet-body{background:#f0f0f0!important}
+.portlet-body .chat-body.clearfix{border-left:solid #ddd 1px}
+
+
+.portlet-body .ng-scope .portlet-title{transition:all 0.25s ease-in-out;-webkit-transition:all 0.25s ease-in-out;-khtml-transition:all 0.25s ease-in-out;-moz-transition:all 0.25s ease-in-out;-o-transition:all 0.25s ease-in-out;-ms-transition:all 0.25s ease-in-out;-icab-transition:all 0.25s ease-in-out}
+/*.portlet-body:hover{-webkit-transform: scale(1);-ms-transform: scale(1);transform: scale(1)}*/
+.portlet-body .ng-scope:hover .portlet-title{background:#1fb5ad}
