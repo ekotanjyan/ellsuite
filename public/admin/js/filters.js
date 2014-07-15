@@ -14,4 +14,15 @@ define(['angular', 'services'], function (angular, services) {
 				return String(text).replace(/\%VERSION\%/mg, version);
 			};
 	  	}])
+	  	.filter('fbStoryAsTitle',['$interpolate', function($interpolate){
+	  		return function(item){
+	  			// return item.story.replace(item.from.name, $interpolate('{{name}} / ')(item.from.name))
+	  			return item.story.replace(item.from.name, item.from.name + ' | ');
+	  		}
+	  	}])
+	  	.filter('fbStoryAsBody',['$interpolate', function($interpolate){
+	  		return function(item){
+
+	  		}
+	  	}])
 });

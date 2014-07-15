@@ -73,6 +73,7 @@
 				Facebooker.fetch(function(feed){
 					$scope.$parent.$safeApply(function(){
 						$scope.network.items = feed.data;
+						// $scope.network.profile.name = 
 						$scope.network.profile.picture = 'https://graph.facebook.com/v2.0/' + Facebooker.me.id + '/picture'
 					});
 				});
