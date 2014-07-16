@@ -1087,7 +1087,7 @@ $(document).ready(function(){
 	//close pop-up window
 	function closePopUpWindow(){
 		$(".custom-pop-up").stop().animate({opacity:"0"},300,function(){
-			$(this).css({display:"block"});
+			$(".custom-pop-up").css({display:"none"});
 		});
 	}
 
