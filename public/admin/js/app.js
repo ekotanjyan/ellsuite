@@ -16,7 +16,7 @@ define([
 	'angularResource',
 	"angularLoader",
 	'angular-file-upload',
-	// 'ngMaterial',
+	'angularLinkify',
 	'angularGeolocation',
 	'angularAnimate'
 	], function (angular, filters, services, directives, controllers, angularRoute, angularFacebook, angularUnderscore, IN) {
@@ -40,7 +40,7 @@ define([
 			'ngAnimate',
 			'multi-select',
 			'truncate',
-			// 'ngMaterial',
+			'linkify',
 			'geolocation',
 		])
 		.config(['FacebookProvider','GooglePlusProvider','cfpLoadingBarProvider', function(FacebookProvider,GooglePlusProvider, cfpLoadingBarProvider) {

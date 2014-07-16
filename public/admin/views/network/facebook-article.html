@@ -2,7 +2,12 @@
     <div class="portlet-title">
         <a href="https://www.facebook.com/profile.php?id={{item.from.id}}" target="_blank">
             <stront class="primary-font">
-                {{item.from.name}}
+                <span ng-if="!item.story">
+                	{{item.from.name}}
+            	</span> 
+            	<span ng-if="item.story"> 
+            		{{item | fbStoryAsTitle}} 
+				</span>
             </stront>
         </a> 
         <small class="text-muted pull-right from-now">
@@ -20,22 +25,21 @@
 				<!--post-two-column-->
 				<div class="post-two-column">
 					<div class="post-two-column-group">
-						<div class="post-two-column-left">
-							<a ng-if="item.picture" ng-href="{{item.actions[0].link}}">
+						<div ng-if="item.picture" class="post-two-column-left">
+							<a  target="_blank" ng-href="{{item.actions[0].link}}">
 								<img  ng-src="{{ item.picture }}"/>
 							</a>
 						</div>
 						<div class="post-two-column-right">
 							<div class="post-two-column-right-pad">
-								<p ng-if="item.story">{{item.story}}</p>
-								<p>{{item.message | words:25 }}</p>
+								<div ng-bind-html="item.message | words:25 | linkify"></div>
 								<div ng-if="item.to">
 									 — 
 									<a ng-repeat="to in item.to.data" target="_blank" ng-href="https://www.facebook.com/profile.php?id={{to.id}}">
 										{{to.name}}
 									</a>
-						            <button type="button" class="btn btn-readmore btn-info pull-right" ng-click="readMore(item)">Read more..</button>
 								</div>
+					            <button type="button" class="btn btn-readmore btn-info pull-right" ng-click="readMore(item)">Read more..</button>
 							</div>
 						</div>
 					</div>
