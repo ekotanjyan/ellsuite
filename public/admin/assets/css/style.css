@@ -4446,5 +4446,4 @@ background-color:#d18c00;
 
 
 .portlet-body .ng-scope .portlet-title{transition:all 0.25s ease-in-out;-webkit-transition:all 0.25s ease-in-out;-khtml-transition:all 0.25s ease-in-out;-moz-transition:all 0.25s ease-in-out;-o-transition:all 0.25s ease-in-out;-ms-transition:all 0.25s ease-in-out;-icab-transition:all 0.25s ease-in-out}
-/*.portlet-body:hover{-webkit-transform: scale(1);-ms-transform: scale(1);transform: scale(1)}*/
 .portlet-body .ng-scope:hover .portlet-title{background:#1fb5ad}
