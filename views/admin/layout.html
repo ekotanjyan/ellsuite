@@ -1024,6 +1024,73 @@ $(document).ready(function(){
 
 	$(".custom-pop-up").css({height:$(window).height()});
 
+	//choose profile drop down mouseover
+	$("body").on("mouseenter",".drop-down-cell",function(){
+		$(this).find(".dd-cell").css({display:"block"});
+		$(this).find(".dd-cell").stop().animate({opacity:1},300);
+		$(".dd-cell").css({height:$(".dd-cell-height-detect").height()});
+	});
+
+	//choose profile drop down mouseout
+	$("body").on("mouseleave",".drop-down-cell",function(){
+		$(this).find(".dd-cell").stop().animate({opacity:0},300,function(){
+			$(this).css({display:"none"});
+		});
+	});
+
+	//choose profile drop down item click
+	$("body").on("click",".dd-list li",function(){
+		$(".dd-list li").each(function(){$(this).removeClass("current");});
+		$(this).addClass("current");
+		$(".pseudo-txt-ecll").html($(this).find("a").html());
+		return false;
+	});
+
+	//setting mouseenter
+	$("body").on("mouseenter",".settings-button",function(){
+		$(this).find(".setting-open-close-panel").css({display:"block"});
+		$(this).find(".setting-open-close-panel").stop().animate({opacity:1},300);
+	});
+
+	//setting mouseleave
+	$("body").on("mouseleave",".settings-button",function(){
+		$(this).find(".setting-open-close-panel").stop().animate({opacity:0},300,function(){
+			$(this).css({display:"none"});
+		});
+	});
+
+	//setting item click
+	$("body").on("click",".setting-icons-list li",function(){
+		$(".setting-icons-list li").each(function(){
+			$(this).removeClass("current");
+		});
+		$(this).addClass("current");
+		return false;
+	});
+
+	//open pop-up window
+	$("body").on("click",".header.navbar.navbar-fixed-top",function(){
+		openPopUpWindow();
+	});
+
+	//open pop-up window
+	$("body").on("click",".icon2-close.fsx1",function(){
+		closePopUpWindow();
+	});
+
+	//open pop-up window
+	function openPopUpWindow(){
+		$(".custom-pop-up").css({display:"block"});
+		$(".custom-pop-up").stop().animate({opacity:"1"},300);
+	}
+
+	//close pop-up window
+	function closePopUpWindow(){
+		$(".custom-pop-up").stop().animate({opacity:"0"},300,function(){
+			$(this).css({display:"block"});
+		});
+	}
+
 });
 
 // jQuery(document).ready(function() {    
