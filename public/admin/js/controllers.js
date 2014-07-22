@@ -84,6 +84,11 @@
 			$scope.showTools = function(){
 				$scope.isToolsShown = !$scope.isToolsShown; 
 			}
+			$scope.$on('shareArticle',function($event, post){
+				Facebooker.post(post, function(){
+					alert('asd')
+				});
+			});
 			$scope.refresh = RefreshFacebookFeed;
 		}])
 		.controller('GooglePlusNetworksController', ['$scope','Google',function($scope, Google){
@@ -142,7 +147,7 @@
 					$scope.location.isShown = false;
 					$scope.link.value = '';
 					$scope.uploader.clearQueue();
-					angular.forEach($scope.providers,function(_p){_p.isOn = false;});
+					angular.forEach($scope.providers, function(_p){_p.isOn = false;});
 				});
 			});
 			$scope.sendTo = [];
@@ -217,6 +222,9 @@
 				autoUpload: true,
 				url: '/admin/socialshare/attachImage'
 			});
+			$scope.share = function(){
+				$rootScope.$broadcast('shareArticle', $scope);
+			}
 		}])
 		.controller('MacrosController',['$scope', '$http', '$rootScope', function($scope, $http, $rootScope){	
 			var __macroPath = '/admin/macro'; 

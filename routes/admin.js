@@ -71,6 +71,12 @@ module.exports = [
 		}
 	],
 	[	
+		'post', '/sharePost', ['admin'], 
+		function (req, res, next){
+			
+		}
+	],
+	[	
 		'post','/macro',['admin'],
 		function(req, res){
 			if(req.body){

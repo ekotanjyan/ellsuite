@@ -62,6 +62,7 @@ define(['angular', 'services', 'angularSlider'], function(angular, services) {
                     var img = new Image();
                     img.onload = onLoadImage;
                     img.src = event.target.result;
+                    scope.item.dataURL = event.target.result;
                 }
 
                 function onLoadImage() {

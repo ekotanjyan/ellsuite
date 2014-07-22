@@ -52,6 +52,21 @@ define(['angular','LinkedIn', 'Codebird'], function (angular,IN, Codebird) {
 						}
 					});
 				},
+				"post":function PostToFacebook($scope, cb){
+					var article = {};
+					if ($scope.message){
+						article.message = $scope.message;
+					}
+					if($scope.link.isShown){
+						article.link = $scope.link.value;
+					}else if($scope.uploader.queue.length){
+						article.picture = $scope.uploader.queue[0].dataURL;
+					}
+					Facebook.api('/me/feed', 'post', article, function(res){
+						console.log( res.code );
+						cb(res);
+					});
+				},
 				"me":undefined
 			}
 			function FetchFacebookData(cb){
@@ -87,7 +102,7 @@ define(['angular','LinkedIn', 'Codebird'], function (angular,IN, Codebird) {
 					IN.API.NetworkUpdates("me")
 						.fields([''])
 					    .result(function(res){
-							callback(res);
+							callback( res );
 						});
 				}else{
 					IN.API.Profile("me").result(function(res){
@@ -123,5 +138,4 @@ define(['angular','LinkedIn', 'Codebird'], function (angular,IN, Codebird) {
 		}])
 		.value('LinkedinAPI', IN)
 		.value('version', '0.1');
-		console.log('ON service.js');
 });
