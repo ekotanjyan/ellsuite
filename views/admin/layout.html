@@ -1068,15 +1068,25 @@ $(document).ready(function(){
 		return false;
 	});
 
+
+	$("body").on("click",".icon2-close.fsx1",function(){
+		$(this).closest(".c-size-modal-dialog-box").find("button.btn.btn-default").trigger("click");
+	});
+
+
 	//open pop-up window
+	/*
 	$("body").on("click",".header.navbar.navbar-fixed-top",function(){
 		openPopUpWindow();
 	});
+	*/
 
 	//open pop-up window
+	/*
 	$("body").on("click",".icon2-close.fsx1",function(){
 		closePopUpWindow();
 	});
+	*/
 
 	//open pop-up window
 	function openPopUpWindow(){

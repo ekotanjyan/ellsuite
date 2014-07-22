@@ -46,7 +46,7 @@
 .sample-show-hide{-webkit-transition:all linear .5s;transition:all linear .5s}
 .sample-show-hide.ng-hide{opacity:0}
 .post-two-column-group,.post-two-column,.post-two-column-left,.post-two-column-right{min-height:90px;height:auto!important;height:90px}
-.setting-panel:after,.dd-list:after,.dd-list li:after,.dd-cell-height-detect:after,.comment-two-column-left-pad:after,.comment-two-column-right-pad:after,.comment-two-column:after,.comment-two-column-group:after,.box-carcass-pad:after,.drop-down-panel:after,.box-carcass-title:after,.post-two-column-right-pad:after,.post-two-column-group:after,.post-two-column:after{content:"";display:block;clear:both;font-size:0;text-decoration:none;visibility:hidden;text-indent:-999999px}
+.panel.row.panel-primary.network-icons-pane:after,.setting-panel:after,.dd-list:after,.dd-list li:after,.dd-cell-height-detect:after,.comment-two-column-left-pad:after,.comment-two-column-right-pad:after,.comment-two-column:after,.comment-two-column-group:after,.box-carcass-pad:after,.drop-down-panel:after,.box-carcass-title:after,.post-two-column-right-pad:after,.post-two-column-group:after,.post-two-column:after{content:"";display:block;clear:both;font-size:0;text-decoration:none;visibility:hidden;text-indent:-999999px}
 .post-two-column{width:100%;clear:both}
 .post-two-column-left{width:180px;float:left}
 .post-two-column-right{width:100%;float:left;margin-right:-100%}
@@ -54,7 +54,7 @@
 .post-two-column-right-pad{clear:both;padding-right:190px}
 .post-two-column-left img{display:block!important;width:80%!important;height:auto!important}
 .btn-el{background-color: #1fb5ad}
-.pop-up-content-carcass{clear:both;width:53.854166666666666666666666666667%;height:}
+.pop-up-content-carcass{clear:both;width:53.854166666666666666666666666667%}
 .custom-pop-up{z-index:10000;overflow:hidden}
 .custom-pop-up,.custom-pop-up-content,.custom-pop-up-black-opacity-layer{width:100%;height:100%;position:fixed;left:0;top:0}
 .custom-pop-up-black-opacity-layer{background:#000;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";filter:alpha(opacity=70);-moz-opacity:0.7;-khtml-opacity:0.7;opacity:0.7}
@@ -116,4 +116,6 @@ html,body{cursor:default}
 .setting-icons-list li{width:45px}
 .setting-icons-list li a{display:block;width:45px;height:45px;color:#000;font-size:30px;text-align:center;line-height:45px;text-decoration:none}
 .setting-icons-list li.current a,.setting-icons-list li a:hover{background:#1fb5ad;color:#fff;text-decoration:none}
-
+.p0{padding:0}
+.c-size-modal-dialog-box{width:60%;min-width:600px}
+.panel.row.panel-primary.network-icons-pane{min-height:32px;height:auto!important;height:32px;clear:both}
