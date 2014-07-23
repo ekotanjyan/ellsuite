@@ -5,8 +5,75 @@
 
 	return angular.module('ellsuite.controllers', ['ellsuite.services'])
 		// Sample controller where service is being used
-		.controller('SocialShareController', ['$scope', 'Facebook', '$rootScope', '$interval', function ($scope, Facebook, $rootScope, $interval) {
+		.controller('SocialShareController', 
+			['$scope', 
+			'$rootScope', 
+			'$interval',
+			'Facebooker',
+			'Google', 
+			'Linkediner',
+			'Codebird', function ($scope, $rootScope, $interval, Facebooker, Google, Linkediner, Codebird) {
 			$scope.networks = [];
+			$scope.providers = [{
+				"isReady":false,
+				"iconClass":"fa fa-facebook fa-fw",
+				"name":"Facebook",
+				"init":function(){
+					var _this = this;
+					Facebooker.auth(function(){
+						_this.isReady = true;
+					});
+				},
+				"feeds":[{
+						"name":"News Feed",
+						"create":function(){
+
+						}
+					},{
+						"name":"Media Feed",
+						"create":function(){
+
+						}
+					},{
+						"name":"Timeline",
+						"create":function(){
+
+						}
+					},
+				],
+				"profile":{},
+			},{
+				"isReady":false,
+				"iconClass":"fa fa-linkedin fa-fw",
+				"name":"Linkedin",
+				"init":function(){
+					Facebooker.auth(function(){
+						this.isReady = true; 
+						consle.log('asdsa', arguments);
+					});
+				},
+				"profile":{},
+			},{
+				"isReady":false,
+				"iconClass":"fa fa-twitter fa-fw",
+				"name":"Twitter",
+				"init":function(){
+					Facebooker.auth(function(){
+						consle.log('asdsa', arguments);
+					});
+				},
+				"profile":{},
+			},{
+				"isReady":false,
+				"iconClass":"fa fa-google-plus fa-fw",
+				"name":"Google+",
+				"init":function(){
+					Facebooker.auth(function(){
+						consle.log('asdsa', arguments);
+					});
+				},
+				"profile":{},
+			},];
 			$scope.grid = 2;
 			$scope.create = function CreatNetwork(type){
 				var _return;
@@ -25,11 +92,6 @@
 			};
 			$scope.$watchCollection	('networks',function(){
 				$scope.$broadcast('networksEdited');
-			});
-			$scope.$watch(function() {
-				return Facebook.isReady();
-			}, function(newVal) {
-				$scope.isFacebookReady = true;
 			});
 			$scope.networks.refresh = function(){
 				$rootScope.$broadcast('refreshFeed');
@@ -89,6 +151,7 @@
 					alert('asd')
 				});
 			});
+
 			$scope.refresh = RefreshFacebookFeed;
 		}])
 		.controller('GooglePlusNetworksController', ['$scope','Google',function($scope, Google){

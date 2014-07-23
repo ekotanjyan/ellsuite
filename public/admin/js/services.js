@@ -41,16 +41,41 @@ define(['angular','LinkedIn', 'Codebird'], function (angular,IN, Codebird) {
 		}])
 		.factory('Facebooker', ['Facebook',function (Facebook) {
 			var Facebooker = {
-				"fetch":function FetchFacebookFeed(cb){
+				"isLogedin":false,
+				"auth":function (cb){
 					Facebook.getLoginStatus(function(res){
 						if(res.status !== "connected"){
 							Facebook.login(function(){
-								FetchFacebookData(cb);
-							}, {scope:'read_stream,user_likes,user_status,offline_access,user_photos,publish_stream,publish_actions,manage_pages,photo_upload,user_hometown,user_location,user_checkins,friends_likes,friends_photos,friends_status,friends_videos,share_item'});
+								cb(res);
+							}, {'scope':[
+								"read_stream", 
+								"user_likes", 
+								"user_status", 
+								"offline_access", 
+								"user_photos", 
+								"publish_stream", 
+								"publish_actions", 
+								"manage_pages", 
+								"photo_upload", 
+								"user_hometown", 
+								"user_location", 
+								"user_checkins", 
+								"friends_likes", 
+								"friends_photos", 
+								"friends_status", 
+								"friends_videos", 
+								"share_item"].join(',')});
 						}else{
-							FetchFacebookData(cb);
+							cb(res);
 						}
 					});
+				},
+				"fetch":function FetchFacebookFeed(cb){
+					if(this.isLogedin){
+						FetchFacebookData(cb);
+					}else{
+						cb(new Error("Call .auth(<cb>) first"));
+					}
 				},
 				"post":function PostToFacebook($scope, cb){
 					var article = {};
@@ -63,7 +88,6 @@ define(['angular','LinkedIn', 'Codebird'], function (angular,IN, Codebird) {
 						article.picture = $scope.uploader.queue[0].dataURL;
 					}
 					Facebook.api('/me/feed', 'post', article, function(res){
-						console.log( res.code );
 						cb(res);
 					});
 				},
@@ -80,7 +104,7 @@ define(['angular','LinkedIn', 'Codebird'], function (angular,IN, Codebird) {
 					});
 				},
 				"me":undefined
-			}
+			};
 			function FetchFacebookData(cb){
 				var __tmp = {};
 				var __handler = function(feed, me){

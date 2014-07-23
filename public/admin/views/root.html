@@ -72,37 +72,14 @@
                 <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-alerts">
-                <li>
-                    <a ng-click="create('facebook')">
+                <li ng-repeat-start="provider in providers">
+                    <a ng-click="provider.init('facebook')" ng-disabled="privider.isReady">
                         <div>
-                            <i class="fa fa-facebook fa-fw"></i> Facebook
+                            <i class="{{provider.iconClass}}"></i> {{provider.name}}
                         </div>
                     </a>
                 </li>
-                <li class="divider"></li>
-                <li>
-                    <a ng-click="create('twitter')">
-                        <div>
-                            <i class="fa fa-twitter fa-fw"></i> Twitter
-                        </div>
-                    </a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                    <a ng-click="create('linkedin')">
-                        <div>
-                            <i class="fa fa-linkedin fa-fw"></i> Linkedin
-                        </div>
-                    </a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                    <a ng-click="create('google-plus')">
-                        <div>
-                            <i class="fa fa-google-plus fa-fw"></i> Google+
-                        </div>
-                    </a>
-                </li>
+                <li ng-repeat-end class="divider"></li>
             </ul>
             
         </li>
@@ -120,11 +97,28 @@
                     </a>
                     <ul class="dropdown-menu dropdown-alerts">
                         <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-google-plu fa-fw"></i> Item+
+                        <div class="portlet box green tabbable">
+                            <div class="portlet-body">
+                                <div class="portlet-tabs">
+                                    <ul class="tabbable-custom">
+                                        <li ng-repeat="provider in providers | elNetworkIsReady">
+                                            <a href="#feed_type_{{$$index}}" data-toggle="tab">
+                                                <i class="{{provider.iconClass}}"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div ng-repeat="provider in providers | elNetworkIsReady" class="tab-pane" id="feed_type_{{$$index}}">
+                                            <div class="btn-group">
+                                                <a class="btn" ng-repeat="feed in feeds" ng-click="feed.create()" data-toggle="dropdown">
+                                                    {{feed.name}}
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </a>
+                            </div>
+                    </div>
                         </li>
                     </ul>
                     

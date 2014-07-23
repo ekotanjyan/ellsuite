@@ -25,4 +25,15 @@ define(['angular', 'services'], function (angular, services) {
 
 	  		}
 	  	}])
+	  	.filter('elNetworkIsReady',[function(){
+	  		return function(providers){
+	  			var _tmp = [];
+	  			angular.forEach(providers, function(provider){
+	  				if(provider.isReady){
+	  					_tmp.push(provider);
+	  				}
+	  			});
+	  			return _tmp;
+	  		}
+	  	}])
 });
