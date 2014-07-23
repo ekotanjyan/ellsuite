@@ -8,6 +8,14 @@ require("underscore-keypath");
 
 module.exports = [
 	[
+		'get','',['admin'],
+		function(req, res){
+			res.render('admin/index',{
+				"title":"Index"
+			});
+		}
+	],
+	[
 		'get','/',['admin'],
 		function(req, res){
 			res.render('admin/index',{

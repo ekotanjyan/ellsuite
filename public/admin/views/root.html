@@ -10,7 +10,7 @@
 			<i class="icon-refresh"></i>
         </button>
         <li class="dropdown btn btn-outline btn-primary btn-el">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <a class="dropdown-toggle" data-toggle="dropdown" >
     			<i class="icon-clock"></i>
             </a>
             <ul class="dropdown-menu dropdown-alerts">
@@ -66,7 +66,7 @@
     </div>
 	<div class="col-xs-12 col-sm-6 col-md-3 col-lg-2">
 	    <li class="dropdown btn btn-block btn-outline btn-primary btn-el">
-            <a class="dropdown-toggle " data-toggle="dropdown" href="#">
+            <a class="dropdown-toggle " data-toggle="dropdown" >
                 <i class="icon-globe"></i>
                 Add Network  
                 <i class="fa fa-caret-down"></i>
@@ -91,34 +91,34 @@
 	</div>
     <div class="col-xs-12 col-sm-6 col-md-3 col-lg-2">
         <li class="dropdown btn btn-block btn-outline btn-primary btn-el">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <a class="dropdown-toggle" data-toggle="dropdown">
                     <i class="icon-plus"></i>
                         Add a Stream 
                     </a>
                     <ul class="dropdown-menu dropdown-alerts">
                         <li>
-                        <div class="portlet box green tabbable">
-                            <div class="portlet-body">
-                                <div class="portlet-tabs">
-                                    <ul class="tabbable-custom">
-                                        <li ng-repeat="provider in providers | elNetworkIsReady">
-                                            <a href="#feed_type_{{$$index}}" data-toggle="tab">
-                                                <i class="{{provider.iconClass}}"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                    <div class="tab-content">
-                                        <div ng-repeat="provider in providers | elNetworkIsReady" class="tab-pane" id="feed_type_{{$$index}}">
-                                            <div class="btn-group">
-                                                <a class="btn" ng-repeat="feed in feeds" ng-click="feed.create()" data-toggle="dropdown">
-                                                    {{feed.name}}
+                            <div class="portlet box green tabbable">
+                                <div class="portlet-body">
+                                    <div class="portlet-tabs nav-justified">
+                                        <ul class="tabbable-custom nav-justified">
+                                            <li ng-repeat="provider in providers | elNetworkIsReady">
+                                                <a href="#feed_type_{{$index}}" data-toggle="tab">
+                                                    <i class="{{provider.iconClass}}"></i>
                                                 </a>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div ng-repeat="provider in providers | elNetworkIsReady" class="tab-pane" id="feed_type_{{$index}}">
+                                                <div class="btn-group">
+                                                    <a class="btn" ng-repeat="feed in provider.feeds" ng-click="feed.create()" data-toggle="dropdown">
+                                                        {{feed.name}}
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                    </div>
                         </li>
                     </ul>
                     
