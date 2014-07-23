@@ -132,12 +132,12 @@
     </div>
 </div>
 
-<div class="row panel-streams">
+<div class="row panel-streams g-c-height">
     <div class="list-inline">
         <div  
             ng-repeat="network in networks"  
             el-networker="{{network.type}}"
-            class=" stream 
+            class="f-scroll stream 
                     repeated-item
                     col-xs-{{grid | grider}}   
                     col-sm-{{grid | grider}} 
@@ -147,6 +147,16 @@
         </div>
     </div>
 </div>
+<script>
+$(document).ready(function(){
+
+	$(window).resize(function(){
+		deltaHeight=$(window).height()-161-64;
+		$(".f-scroll").css({height:deltaHeight,overflow:"hidden"});
+	});
+
+});
+</script>
 <div class="modal fade" id="sendAndShare" el-reset-share tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="SendAndShareController">
     <div class="modal-dialog">
         <div class="modal-content">

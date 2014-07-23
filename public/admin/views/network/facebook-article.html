@@ -52,3 +52,28 @@
         </div>
     </div>
 </div>
+<script>
+$(document).ready(function(){
+	deltaHeight=$(window).height()-161-64;
+	$(".f-scroll").css({height:deltaHeight,overflow:"hidden"});
+
+
+    $(".f-scroll").niceScroll({
+					touchbehavior:true,
+					cursorcolor:"#484848",
+					cursoropacitymax:0.9,
+					cursorwidth:10,
+					cursorborder:"0px solid #4d1b07",
+					cursorborderradius:"8px",
+					background:"#e8e8e8",
+					scrollspeed:100,
+					mousescrollstep:60,
+					autohidemode:false
+					});
+
+});
+
+
+
+
+</script>
