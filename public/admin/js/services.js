@@ -67,6 +67,18 @@ define(['angular','LinkedIn', 'Codebird'], function (angular,IN, Codebird) {
 						cb(res);
 					});
 				},
+				"fetchMedia": function ffetcher(cb){
+					var _this = this;
+					_this.fetch(function(res){
+						var __tmp = [];
+						angular.forEach(res.data,function(item){
+							if(item.type == 'video' || item.type == 'photo'){
+								__tmp.push(item);
+							}
+						});
+						cb(__tmp);
+					});
+				},
 				"me":undefined
 			}
 			function FetchFacebookData(cb){
