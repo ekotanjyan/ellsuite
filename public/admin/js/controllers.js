@@ -109,7 +109,6 @@
 		.controller('LinkedinNetworksController', ['$scope', 'Linkediner', function($scope, Linkediner) {
 			$scope.network.profile = {};
 			$scope.isToolsShown = false;
-
 			function ReloadLinkedinData(){
 				Linkediner.fetch(function(res){
 					$scope.$parent.$safeApply(function(){

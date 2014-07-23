@@ -8,8 +8,6 @@ var UserSchema = new Schema({
 		"refreshDelay":Number,
 		"feeds":[String]
 	},
-	// -----------
-	"content":String,	
 	"updated":{
 		type:Date,
 		default:Date.now
