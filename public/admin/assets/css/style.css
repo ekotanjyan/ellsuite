@@ -750,7 +750,8 @@ Page sidebar
    font-size: 16px;
    font-family: FontAwesome;
    height: auto;
-   content: "\f104";
+/*   content: "\f104"; */
+   content: "\f107";
    font-weight: 300;
    text-shadow:none;
 }
@@ -4447,3 +4448,23 @@ background-color:#d18c00;
 
 .portlet-body .ng-scope .portlet-title{transition:all 0.25s ease-in-out;-webkit-transition:all 0.25s ease-in-out;-khtml-transition:all 0.25s ease-in-out;-moz-transition:all 0.25s ease-in-out;-o-transition:all 0.25s ease-in-out;-ms-transition:all 0.25s ease-in-out;-icab-transition:all 0.25s ease-in-out}
 .portlet-body .ng-scope:hover .portlet-title{background:#1fb5ad}
+.page-sidebar-menu{padding-top:10px}
+.g-relat{position:relative;top:0;left:0}
+.page-header-fixed .page-container{margin-top:0}
+.header.navbar{height:44px}
+.g-tool-bar{position:absolute;top:0;left:224px;width:470px}
+.g-menu-button{display:block;width:44px;cursor:pointer;cursor:hand;border-left:solid #a8a8a9 1px;float:left;background:url(../../img/menu.png) no-repeat left -1px}
+.g-search-cell{width:155px;float:left;border-right:solid #a8a8a9 1px;border-left:solid #a8a8a9 1px;position:relative;top:0;left:0}
+.g-menu-button,.g-tool-bar,.g-search-cell{height:44px}
+.header.navbar.navbar-fixed-top.g-relat{border-bottom:solid #a8a8a9 1px}
+.g-search-inp{padding:5px;background:transparent;font-size:15px;color:#666;border:0px;width:71%;margin:0;height:44px;font-family:arial,sans-serif;padding-left:15px;float:left}
+.g-submit{display:block;width:44px;height:44px;background-color:transparent;border:0;float:right}
+.g-form{float:left}
+.g-submit{background:url(../../img/s-button.png) no-repeat left top}
+.red-raund{background:#c02727}
+.green-round{background:#a9d86e}
+.aqua-green{background:#1fb5ad!important}
+#c-hover span,.c-hover span,#c-hover,.c-hover,.dropdown.user{transition:all 0.25s ease-in-out;-webkit-transition:all 0.25s ease-in-out;-khtml-transition:all 0.25s ease-in-out;-moz-transition:all 0.25s ease-in-out;-o-transition:all 0.25s ease-in-out;-ms-transition:all 0.25s ease-in-out;-icab-transition:all 0.25s ease-in-out}
+#c-hover:hover,.c-hover:hover{background:#32323a!important;color:#fff}
+#c-hover:hover span,.c-hover:hover span{color:#fff!important}
+.f-border{border:solid #f5f5f5 1px}
