@@ -54,7 +54,20 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- BEGIN BODY -->
 <body class="page-header-fixed">
 <!-- BEGIN HEADER -->
-<div class="header navbar navbar-fixed-top">
+<div class="header navbar navbar-fixed-top g-relat">
+
+	<!--g-tool-bar-->
+	<div class="g-tool-bar">
+		<div class="g-menu-button"></div>
+		<form class="sidebar-search g-form" action="extra_search.html" method="POST">
+			<div class="g-search-cell">
+				<input type="text" placeholder="Search here..." value="" class="g-search-inp" />
+				<input type="button" class="g-submit" value=" "/>
+			</div>
+		</form>
+	</div>
+	<!--/g-tool-bar-->
+
 	<!-- BEGIN TOP NAVIGATION BAR -->
 	<div class="header-inner">
 		<!-- BEGIN RESPONSIVE MENU TOGGLER -->
@@ -193,7 +206,7 @@ License: You must have a valid license purchased only from themeforest(the above
 			<li class="dropdown" id="header_inbox_bar">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
 					<i class="icon-envelope"></i>
-					<span class="badge">
+					<span class="badge red-raund">
 						 5
 					</span>
 				</a>
@@ -309,7 +322,7 @@ License: You must have a valid license purchased only from themeforest(the above
 			<li class="dropdown" id="header_task_bar">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
 					<i class="icon-layers"></i>
-					<span class="badge">
+					<span class="badge green-round">
 						 5
 					</span>
 				</a>
@@ -466,8 +479,8 @@ License: You must have a valid license purchased only from themeforest(the above
 			<!-- END TODO DROPDOWN -->
 			<!-- BEGIN USER LOGIN DROPDOWN -->
 			<li class="dropdown user">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-					<img alt="" src="assets/img/avatar1_small.jpg"/>
+				<a href="#" class="dropdown-toggle c-hover" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" id="c-hover">
+					<img alt="" src="assets/img/avatar1_small.jpg" class="f-border"/>
 					<span class="username">
 						 Victor Milovski
 					</span>
@@ -526,8 +539,10 @@ License: You must have a valid license purchased only from themeforest(the above
 	<!-- END TOP NAVIGATION BAR -->
 </div>
 <!-- END HEADER -->
+<!--
 <div class="clearfix">
 </div>
+-->
 <!-- BEGIN CONTAINER -->
 <div class="page-container">
 	<!-- BEGIN SIDEBAR -->
@@ -536,14 +551,14 @@ License: You must have a valid license purchased only from themeforest(the above
 			<!-- add "navbar-no-scroll" class to disable the scrolling of the sidebar menu -->
 			<!-- BEGIN SIDEBAR MENU -->
 			<ul class="page-sidebar-menu" data-auto-scroll="true" data-slide-speed="200">
+				<!--
 				<li class="sidebar-toggler-wrapper">
-					<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
-					<div class="sidebar-toggler hidden-phone">
-					</div>
-					<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+					<div class="sidebar-toggler hidden-phone"></div>
 				</li>
+				-->
 				<li class="sidebar-search-wrapper">
 					<!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
+					<!--
 					<form class="sidebar-search" action="extra_search.html" method="POST">
 						<div class="form-container">
 							<div class="input-box">
@@ -554,6 +569,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							</div>
 						</div>
 					</form>
+					-->
 					<!-- END RESPONSIVE QUICK SEARCH FORM -->
 				</li>
 				<li class="start active ">
@@ -1038,10 +1054,9 @@ License: You must have a valid license purchased only from themeforest(the above
 							</a>
 						</li>
 						<li class="pull-right">
-							<div id="dashboard-report-range" class="dashboard-date-range tooltips" data-placement="top" data-original-title="Change dashboard date range">
+							<div id="dashboard-report-range" class="dashboard-date-range tooltips aqua-green" data-placement="top" data-original-title="Change dashboard date range">
 								<i class="icon-calendar"></i>
-								<span>
-								</span>
+								<span></span>
 								<i class="fa fa-angle-down"></i>
 							</div>
 						</li>

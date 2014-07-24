@@ -119,3 +119,29 @@ html,body{cursor:default}
 .chat.repeated-item.ng-scope .chat-body.clearfix{padding-right:20px}
 .primary-font.ng-binding{display:block;text-align:center;float:left;width:25%;position:absolute;left:0;top:35px}
 .clearfix.ng-scope .chat-body.clearfix{border-bottom:solid #ddd 1px}
+
+
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width:1200px){
+	.col-xs-5.col-sm-2.col-md-2.col-lg-2{clear:both;width:100%;padding:20px}
+	.col-xs-12.col-sm-6.col-md-3.col-lg-2{padding:10px 0}
+	.post-two-column-right{background:aqua!important}
+}
+@media only screen and (max-width:992px){
+	.col-xs-5.col-sm-2.col-md-2.col-lg-2{clear:both;width:100%;padding:20px}
+	.col-xs-12.col-sm-6.col-md-3.col-lg-2{padding:10px 0}
+	.post-two-column-right{background:yellow!important}
+}
+@media only screen and (max-width:768px){
+	.col-xs-5.col-sm-2.col-md-2.col-lg-2{clear:both;width:100%;padding:20px}
+	.col-xs-12.col-sm-6.col-md-3.col-lg-2{padding:10px 0}
+	.post-two-column-right{background:red!important}
+}
