@@ -48,6 +48,7 @@
 					},
 				],
 				"profile":{},
+				"__proto__":Facebooker,
 			},{
 				"isReady":false,
 				"iconClass":"fa fa-linkedin fa-fw",
