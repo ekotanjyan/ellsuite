@@ -100,7 +100,7 @@ define(['angular', 'services', 'angularSlider'], function(angular, services) {
             }]
         };
     }])
-    .directive('elFbReadMore',[function(){
+    .directive('elFbReadMore',['Facebook', function(Facebook){
         var Functions = function($scope){
             this.show = function showReadMore(){
                 $scope.isShown = true;
@@ -126,6 +126,7 @@ define(['angular', 'services', 'angularSlider'], function(angular, services) {
             "templateUrl":"/admin/views/network/facebook-readmore.html",
             "link":function($scope, $element, $attrs){
                 $scope.$element = $element;
+                FB.XFBML.parse($element[0]);
             },
             "controller":['$scope', '$rootScope',function elFBReadMoreController($scope){
                 var fn = new Functions($scope);
