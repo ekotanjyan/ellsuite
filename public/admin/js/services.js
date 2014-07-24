@@ -42,7 +42,7 @@ define(['angular','LinkedIn', 'Codebird'], function (angular,IN, Codebird) {
 		.factory('Facebooker', ['Facebook',function (Facebook) {
 			var FetchMeFromFacebook = function MEFacebook(cb){
 				if(!Facebooker.me){
-					Facebook.api('/me', function(me){
+					Facebook.api('/me/?fields=picture,name', function(me){
 						Facebooker.me = me;
 						cb();
 					});
