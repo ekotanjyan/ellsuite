@@ -18,6 +18,7 @@ define([
 	'angular-file-upload',
 	'angularLinkify',
 	'angularGeolocation',
+	'AngularToaster',
 	'angularAnimate'
 	], function (angular, filters, services, directives, controllers, angularRoute, angularFacebook, angularUnderscore, IN) {
 		'use strict';
@@ -39,6 +40,7 @@ define([
 			'angular-loading-bar',
 			'ngAnimate',
 			'multi-select',
+			'toaster',
 			'truncate',
 			'linkify',
 			'geolocation',

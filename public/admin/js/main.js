@@ -85,8 +85,11 @@ require.config({
         "angularLoader":{
             "deps":['angular']
         },
+        "AngularToaster":{
+            "deps":['angular']
+        },
         "angularLinkify":{
-            deps:['angular']
+            "deps":['angular']
         }
     },
     "priority": [
@@ -118,7 +121,7 @@ require.config({
         'ui.multiselect':'libs/isteven-angular-multiselect/angular-multi-select',
         "angular-file-upload":_ModuelPrefix('angular-file-upload'),
         "angularTrancute":"libs/angular-truncate/src/truncate",
-        "ngMaterial":'http://davo11122.kd.io/material-master/dist/material-design.min',
+        "AngularToaster":"libs/AngularJS-Toaster/toaster",
         "angularUnderscore": _ModuelPrefix('angular-underscore')
     }
 });

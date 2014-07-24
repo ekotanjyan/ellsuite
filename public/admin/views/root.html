@@ -73,11 +73,9 @@
             </a>
             <ul class="dropdown-menu dropdown-alerts">
                 <li ng-repeat-start="provider in providers">
-                    <a ng-click="provider.init('facebook')" ng-disabled="privider.isReady">
-                        <div>
-                            <i class="{{provider.iconClass}}"></i> {{provider.name}}
-                        </div>
-                    </a>
+                    <button ng-click="provider.init('facebook')" class="btn btn-block btn-link" ng-disabled="provider.isReady">
+                        <i class="{{provider.iconClass}}"></i> <span>{{provider.name}}</span>
+                    </button>
                 </li>
                 <li ng-repeat-end class="divider"></li>
             </ul>
@@ -96,28 +94,12 @@
                         Add a Stream 
                     </a>
                     <ul class="dropdown-menu dropdown-alerts">
-                        <li>
-                            <div class="portlet box green tabbable">
-                                <div class="portlet-body">
-                                    <div class="portlet-tabs nav-justified">
-                                        <ul class="tabbable-custom nav-justified">
-                                            <li ng-repeat="provider in providers | elNetworkIsReady">
-                                                <a href="#feed_type_{{$index}}" data-toggle="tab">
-                                                    <i class="{{provider.iconClass}}"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                        <div class="tab-content">
-                                            <div ng-repeat="provider in providers | elNetworkIsReady" class="tab-pane" id="feed_type_{{$index}}">
-                                                <div class="btn-group">
-                                                    <a class="btn" ng-repeat="feed in provider.feeds" ng-click="feed.create()" data-toggle="dropdown">
-                                                        {{feed.name}}
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                        <li ng-repeat="provider in providers | elNetworkIsReady">
+                            <i class="{{provider.iconClass}}"></i>          
+                            <div class="btn-group">
+                                <a class="btn" ng-repeat="feed in provider.feeds" ng-click="feed.create()" data-toggle="dropdown">
+                                    {{feed.name}}
+                                </a>
                             </div>
                         </li>
                     </ul>
@@ -279,3 +261,4 @@ $(document).ready(function(){
 <div el-fb-read-more>
 
 </div>
+<toaster-container></toaster-container>

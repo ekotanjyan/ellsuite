@@ -12,7 +12,8 @@
 			'Facebooker',
 			'Google', 
 			'Linkediner',
-			'Codebird', function ($scope, $rootScope, $interval, Facebooker, Google, Linkediner, Codebird) {
+			'Codebird',
+			'toaster', function ($scope, $rootScope, $interval, Facebooker, Google, Linkediner, Codebird, toaster) {
 			$scope.networks = [];
 			$scope.providers = [{
 				"isReady":false,
@@ -20,24 +21,29 @@
 				"name":"Facebook",
 				"init":function(){
 					var _this = this;
-					Facebooker.auth(function(){
-						_this.isReady = true;
+					Facebooker.auth(function(res){
+						if(res && res.error){
+							toaster.pop('error', 'Facebook not authenticated.','Check your connection and try one more time.');
+						}else{
+							_this.isReady = true;
+							toaster.pop('success', 'Facebook authenticated.','Connected to ' + Facebooker.me.name);
+						}
 					});
 				},
 				"feeds":[{
 						"name":"News Feed",
 						"create":function(){
-
+							$scope.create('facebook','news');
 						}
 					},{
 						"name":"Media Feed",
 						"create":function(){
-
+							$scope.create('facebook', 'newsMedia');
 						}
 					},{
 						"name":"Timeline",
 						"create":function(){
-
+							$scope.create('facebook', 'timeline');
 						}
 					},
 				],
@@ -75,13 +81,14 @@
 				"profile":{},
 			},];
 			$scope.grid = 2;
-			$scope.create = function CreatNetwork(type){
+			$scope.create = function CreatNetwork(type, option){
 				var _return;
 				if(type){
 					_return = {
 						"type":type,
 						"createTime":Date.now(),
-						"items":[]
+						"items":[],
+						"option":option || null
 					}
 					$scope.networks.push(_return);
 				}
@@ -130,14 +137,14 @@
 		.controller('FacebookNetworksController', ['$scope', 'Facebooker', function($scope, Facebooker) {
 			$scope.network.profile = {};
 			$scope.isToolsShown = false;
+			
 			function RefreshFacebookFeed(){
-				Facebooker.fetch(function(feed){
+				Facebooker.fetch($scope.network.option, function FetchTheFeed(feed) {
 					$scope.$parent.$safeApply(function(){
 						$scope.network.items = feed.data;
-						// $scope.network.profile.name = 
 						$scope.network.profile.picture = 'https://graph.facebook.com/v2.0/' + Facebooker.me.id + '/picture'
 					});
-				});
+				})
 			}
 			$scope.$on('refreshFeed', function(){
 				$scope.refresh();
@@ -145,6 +152,8 @@
 			$scope.showTools = function(){
 				$scope.isToolsShown = !$scope.isToolsShown; 
 			}
+			
+			/* Article Sharing*/
 			$scope.$on('shareArticle',function($event, post){
 				Facebooker.post(post, function(){
 					alert('asd')
