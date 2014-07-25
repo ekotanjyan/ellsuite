@@ -48,25 +48,35 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- BEGIN BODY -->
 <body class="page-header-fixed">
 <!-- BEGIN HEADER -->
-<div class="header navbar navbar-fixed-top">
+<div class="header navbar navbar-fixed-top g-relat">
+
+	<!--g-tool-bar-->
+	<div class="g-tool-bar">
+		<div class="g-menu-button"></div>
+		<form class="sidebar-search g-form" action="extra_search.html" method="POST">
+			<div class="g-search-cell">
+				<input type="text" placeholder="Search here..." value="" class="g-search-inp" />
+				<input type="button" class="g-submit" value=" "/>
+			</div>
+		</form>
+	</div>
+	<!--/g-tool-bar-->
+
 	<!-- BEGIN TOP NAVIGATION BAR -->
 	<div class="header-inner">
-		<!-- BEGIN LOGO -->
-		<a class="navbar-brand" href="index.html">
-			<img src="assets/img/logo.png" alt="logo" class="img-responsive"/>
-		</a>
-		<!-- END LOGO -->
 		<!-- BEGIN RESPONSIVE MENU TOGGLER -->
+		<!--
 		<a href="javascript:;" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 			<img src="assets/img/menu-toggler.png" alt=""/>
 		</a>
+		-->
 		<!-- END RESPONSIVE MENU TOGGLER -->
 		<!-- BEGIN TOP NAVIGATION MENU -->
 		<ul class="nav navbar-nav pull-right">
 			<!-- BEGIN NOTIFICATION DROPDOWN -->
 			<li class="dropdown" id="header_notification_bar">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-					<i class="fa fa-warning"></i>
+					<i class="icon-bell"></i>
 					<span class="badge">
 						 6
 					</span>
@@ -81,7 +91,7 @@ License: You must have a valid license purchased only from themeforest(the above
 						<ul class="dropdown-menu-list scroller" style="height: 250px;">
 							<li>
 								<a href="#">
-									<span class="label label-icon label-success">
+									<span class="label label-sm label-icon label-success">
 										<i class="fa fa-plus"></i>
 									</span>
 									 New user registered.
@@ -92,7 +102,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							</li>
 							<li>
 								<a href="#">
-									<span class="label label-icon label-danger">
+									<span class="label label-sm label-icon label-danger">
 										<i class="fa fa-bolt"></i>
 									</span>
 									 Server #12 overloaded.
@@ -103,7 +113,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							</li>
 							<li>
 								<a href="#">
-									<span class="label label-icon label-warning">
+									<span class="label label-sm label-icon label-warning">
 										<i class="fa fa-bell-o"></i>
 									</span>
 									 Server #2 not responding.
@@ -114,7 +124,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							</li>
 							<li>
 								<a href="#">
-									<span class="label label-icon label-info">
+									<span class="label label-sm label-icon label-info">
 										<i class="fa fa-bullhorn"></i>
 									</span>
 									 Application error.
@@ -125,7 +135,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							</li>
 							<li>
 								<a href="#">
-									<span class="label label-icon label-danger">
+									<span class="label label-sm label-icon label-danger">
 										<i class="fa fa-bolt"></i>
 									</span>
 									 Database overloaded 68%.
@@ -136,7 +146,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							</li>
 							<li>
 								<a href="#">
-									<span class="label label-icon label-danger">
+									<span class="label label-sm label-icon label-danger">
 										<i class="fa fa-bolt"></i>
 									</span>
 									 2 user IP blocked.
@@ -147,7 +157,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							</li>
 							<li>
 								<a href="#">
-									<span class="label label-icon label-warning">
+									<span class="label label-sm label-icon label-warning">
 										<i class="fa fa-bell-o"></i>
 									</span>
 									 Storage Server #4 not responding.
@@ -158,7 +168,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							</li>
 							<li>
 								<a href="#">
-									<span class="label label-icon label-info">
+									<span class="label label-sm label-icon label-info">
 										<i class="fa fa-bullhorn"></i>
 									</span>
 									 System Error.
@@ -169,7 +179,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							</li>
 							<li>
 								<a href="#">
-									<span class="label label-icon label-danger">
+									<span class="label label-sm label-icon label-danger">
 										<i class="fa fa-bolt"></i>
 									</span>
 									 Database overloaded 68%.
@@ -191,8 +201,8 @@ License: You must have a valid license purchased only from themeforest(the above
 			<!-- BEGIN INBOX DROPDOWN -->
 			<li class="dropdown" id="header_inbox_bar">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-					<i class="fa fa-envelope"></i>
-					<span class="badge">
+					<i class="icon-envelope"></i>
+					<span class="badge red-raund">
 						 5
 					</span>
 				</a>
@@ -307,8 +317,8 @@ License: You must have a valid license purchased only from themeforest(the above
 			<!-- BEGIN TODO DROPDOWN -->
 			<li class="dropdown" id="header_task_bar">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-					<i class="fa fa-tasks"></i>
-					<span class="badge">
+					<i class="icon-layers"></i>
+					<span class="badge green-round">
 						 5
 					</span>
 				</a>
@@ -465,27 +475,27 @@ License: You must have a valid license purchased only from themeforest(the above
 			<!-- END TODO DROPDOWN -->
 			<!-- BEGIN USER LOGIN DROPDOWN -->
 			<li class="dropdown user">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-					<img alt="" src="assets/img/avatar1_small.jpg"/>
+				<a href="#" class="dropdown-toggle c-hover" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" id="c-hover">
+					<img alt="" src="assets/img/avatar1_small.jpg" class="f-border"/>
 					<span class="username">
-						 Bob Nilson
+						 Victor Milovski
 					</span>
 					<i class="fa fa-angle-down"></i>
 				</a>
 				<ul class="dropdown-menu">
 					<li>
 						<a href="extra_profile.html">
-							<i class="fa fa-user"></i> My Profile
+							<i class="icon-user"></i> My Profile
 						</a>
 					</li>
 					<li>
 						<a href="page_calendar.html">
-							<i class="fa fa-calendar"></i> My Calendar
+							<i class="icon-calendar"></i> My Calendar
 						</a>
 					</li>
 					<li>
 						<a href="inbox.html">
-							<i class="fa fa-envelope"></i> My Inbox
+							<i class="icon-envelope"></i> My Inbox
 							<span class="badge badge-danger">
 								 3
 							</span>
@@ -493,7 +503,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					</li>
 					<li>
 						<a href="#">
-							<i class="fa fa-tasks"></i> My Tasks
+							<i class="icon-layers"></i> My Tasks
 							<span class="badge badge-success">
 								 7
 							</span>
@@ -503,17 +513,17 @@ License: You must have a valid license purchased only from themeforest(the above
 					</li>
 					<li>
 						<a href="javascript:;" id="trigger_fullscreen">
-							<i class="fa fa-arrows"></i> Full Screen
+							<i class="icon-size-actual"></i> Full Screen
 						</a>
 					</li>
 					<li>
 						<a href="extra_lock.html">
-							<i class="fa fa-lock"></i> Lock Screen
+							<i class="icon-lock"></i> Lock Screen
 						</a>
 					</li>
 					<li>
 						<a href="login.html">
-							<i class="fa fa-key"></i> Log Out
+							<i class="icon-key"></i> Log Out
 						</a>
 					</li>
 				</ul>
