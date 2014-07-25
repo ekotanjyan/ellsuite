@@ -146,6 +146,12 @@
 			$scope.showTools = function(){
 				$scope.isToolsShown = !$scope.isToolsShown; 
 			}
+			/* Article sharing*/
+			$scope.$on('shareArticle',function($event, post){
+				Linkediner.post && Linkediner.post(post, function(){
+					// Notify here.
+				});
+			});
 			$scope.refresh = ReloadLinkedinData;
 			
 		}])
@@ -168,10 +174,10 @@
 				$scope.isToolsShown = !$scope.isToolsShown; 
 			}
 			
-			/* Article Sharing*/
+			/* Article sharing*/
 			$scope.$on('shareArticle',function($event, post){
 				Facebooker.post(post, function(){
-					alert('asd')
+					// Notify here.
 				});
 			});
 
@@ -195,9 +201,15 @@
 			$scope.showTools = function(){
 				$scope.isToolsShown = !$scope.isToolsShown; 
 			}
+			/* Article sharing*/
+			$scope.$on('shareArticle',function($event, post){
+				Google.post && Google.post(post, function(){
+					// Notify here.
+				});
+			});
 		}])
 		.controller('TwitterNetworksController', ['$scope', 'Codebird', function ($scope, cb) {
-		// gets a request token
+			// gets a request token
 			$scope.isToolsShown = false;
 
 			cb.__call(
