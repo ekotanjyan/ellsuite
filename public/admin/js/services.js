@@ -155,6 +155,18 @@ define(['angular','LinkedIn', 'Codebird'], function (angular,IN, Codebird) {
 						});
 					}
 				},
+				"post":function($scope, cb){
+					var article = {};
+					if ($scope.message){
+						article.message = $scope.message;
+					}
+					if($scope.link.isShown){
+						article.link = $scope.link.value;
+					}else if($scope.uploader.queue.length){
+						article.picture = $scope.uploader.queue[0].dataURL;
+					}
+					IN.API.Profile('people/~/shares').method('POST').body(article).result(cb)
+				},
 				"me":undefined,
 			};
 			Linkediner.fetch = function(type, cb){
@@ -180,12 +192,6 @@ define(['angular','LinkedIn', 'Codebird'], function (angular,IN, Codebird) {
 				}
 			});
 			return Linkediner;
-		}])
-		.factory('Twitter', ['$http',function ($http) {
-			
-			return {
-		
-			};
 		}])
 		.factory('Codebird', [function(){
 			var cb = new Codebird;
