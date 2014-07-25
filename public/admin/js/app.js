@@ -19,6 +19,7 @@ define([
 	'angularLinkify',
 	'angularGeolocation',
 	'AngularToaster',
+	'angularSortable',
 	'angularAnimate'
 	], function (angular, filters, services, directives, controllers, angularRoute, angularFacebook, angularUnderscore, IN) {
 		'use strict';
@@ -42,6 +43,7 @@ define([
 			'multi-select',
 			'toaster',
 			'truncate',
+			'sortable',
 			'linkify',
 			'geolocation',
 		])

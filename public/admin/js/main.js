@@ -122,6 +122,7 @@ require.config({
         "angular-file-upload":_ModuelPrefix('angular-file-upload'),
         "angularTrancute":"libs/angular-truncate/src/truncate",
         "AngularToaster":"libs/AngularJS-Toaster/toaster",
+        "angularSortable":"libs/angular-sortable/angular-sortable",
         "angularUnderscore": _ModuelPrefix('angular-underscore')
     }
 });

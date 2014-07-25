@@ -54,12 +54,27 @@
 				"iconClass":"fa fa-linkedin fa-fw",
 				"name":"Linkedin",
 				"init":function(){
-					Facebooker.auth(function(){
+					Linkediner.auth(function(){
 						this.isReady = true; 
 						consle.log('asdsa', arguments);
 					});
 				},
+				"feeds":[
+					{
+						"name":"News feed",
+						"create":function(){
+							$scope.create('linkedin', 'newsFeed');
+						}
+					},
+					{
+						"name":"Profile feed",
+						"create":function(){
+							$scope.create('linkedin', 'profileFeed');
+						}
+					},
+				],
 				"profile":{},
+				"__proto__":Linkediner,
 			},{
 				"isReady":false,
 				"iconClass":"fa fa-twitter fa-fw",

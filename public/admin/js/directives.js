@@ -126,7 +126,10 @@ define(['angular', 'services', 'angularSlider'], function(angular, services) {
             "templateUrl":"/admin/views/network/facebook-readmore.html",
             "link":function($scope, $element, $attrs){
                 $scope.$element = $element;
-                FB.XFBML.parse($element[0]);
+                Facebook.parseXFBML($element[0]);
+                $element.on('hidden.bs.modal', function(){
+                    $scope.isShown = false;
+                });
             },
             "controller":['$scope', '$rootScope',function elFBReadMoreController($scope){
                 var fn = new Functions($scope);

@@ -114,11 +114,12 @@
 </div>
 
 <div class="row panel-streams g-c-height">
-    <div class="list-inline">
+    <div class="list-inline" ng-sortable="items">
         <div  
             ng-repeat="network in networks"  
             el-networker="{{network.type}}"
             class="f-scroll stream 
+                    sortable-element 
                     repeated-item
                     col-xs-{{grid | grider}}   
                     col-sm-{{grid | grider}} 

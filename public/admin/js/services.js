@@ -145,8 +145,22 @@ define(['angular','LinkedIn', 'Codebird'], function (angular,IN, Codebird) {
 					});
 				}
 			};
+			var FetchMeFromLinkedin = function FetchMeFromLinkedin(cb){
+				cb();
+			}
 			var Linkediner = {
-				"me":undefined,
+				"isLogedin":false,
+				"auth":function(cb){
+					var $this = this;
+					if(IN.User.isAuthorized()){
+						$this.isLogedin = true;
+						FetchMeFromLinkedin(cb);
+					}else{
+						IN.User.authorize(function(){
+							ReloadLinkedinData(cb);
+						})
+					}
+				},
 				"fetch":function(cb){
 					if(IN.User.isAuthorized()){
 						ReloadLinkedinData(cb);
@@ -155,7 +169,8 @@ define(['angular','LinkedIn', 'Codebird'], function (angular,IN, Codebird) {
 							ReloadLinkedinData(cb);
 						})
 					}
-				}
+				},
+				"me":undefined,
 			};
 			return Linkediner;
 		}])

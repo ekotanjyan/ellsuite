@@ -35,9 +35,9 @@
 							<div class="post-two-column-right-pad">
 								<div ng-bind-html="item.message | words:25 | linkify"></div>
 								<div ng-if="item.caption || item.picture">
-									<div ng-if="item.name"><a ng-href="{{item.link}}">{{item.name}}</a></div>
-									<div ng-if="item.caption">{{item.caption}}</div>
-									<div ng-if="item.description">{{item.description}}</div>
+									<div ng-if="item.name"><a ng-href="{{item.link}}" ng-bind-html="item.name"></a></div>
+									<div ng-if="item.caption" ng-bind-html="item.caption"></div>
+									<div ng-if="item.description" ng-bind-html="item.description"></div>
 								</div>
 
 
