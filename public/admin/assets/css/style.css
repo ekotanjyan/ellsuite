@@ -4469,3 +4469,4 @@ background-color:#d18c00;
 #c-hover:hover span,.c-hover:hover span{color:#fff!important}
 .f-border{border:solid #f5f5f5 1px}
 .sidebar-toggler.hidden-phone{width:1;height:1;overflow:hidden;position:absolute;top:-999999px;left:-999999px}
+.header.navbar .navbar-nav > li.dropdown .dropdown-toggle{padding:14px 10px 7px}
