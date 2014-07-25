@@ -158,7 +158,7 @@ define(['angular','LinkedIn', 'Codebird'], function (angular,IN, Codebird) {
 					}else{
 						IN.User.authorize(function(){
 							ReloadLinkedinData(cb);
-						})
+						});
 					}
 				},
 				"fetch":function(cb){
