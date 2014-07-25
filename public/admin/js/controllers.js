@@ -96,7 +96,7 @@
 					});
 				},
 				"profile":{},
-			},];
+			}];
 			$scope.grid = 2;
 			$scope.create = function CreatNetwork(type, option){
 				var _return;
@@ -134,12 +134,10 @@
 			$scope.network.profile = {};
 			$scope.isToolsShown = false;
 			function ReloadLinkedinData(){
-				Linkediner.fetch(function(res){
+				Linkediner.fetch($scope.network.option, function FetchTheFeed(feed) {
 					$scope.$parent.$safeApply(function(){
-						$scope.network.items = res.values;
-						$scope.network.profile = Linkediner.me;
-						$scope.network.profile.picture = Linkediner.me.pictureUrl;
-					});				
+						$scope.network.items = feed.data;
+					});
 				})
 			};
 			$scope.$on('refreshFeed', function(){
@@ -161,7 +159,7 @@
 						$scope.network.items = feed.data;
 						$scope.network.profile.picture = 'https://graph.facebook.com/v2.0/' + Facebooker.me.id + '/picture'
 					});
-				})
+				});
 			}
 			$scope.$on('refreshFeed', function(){
 				$scope.refresh();
