@@ -1,38 +1,3 @@
-/*   
-Template Name: Ellsuie- Responsive Admin Dashboard Template build with Twitter Bootstrap 3.1.1
-Version: 1.0
-Author: elleonstudios
-Website: http://www.elleonstudio.com/
-Contact: support@elleonstudio.com
-Purchase: http://themeforest.net/item/ellsuite-responsive-admin-dashboard-template/
-License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
-*/
-
-/*********************
- GENERAL UI COLORS 
-*********************/
-
-/***
-Colors
-blue:  #4b8df8
-light blue: #bfd5fa
-red: #e02222
-yellow: #ffb848
-green: #35aa47
-purple: #852b99
-dark: #555555;
-light grey: #fafafa;
-***/
-
-/*********************
- GENERAL RESET & SETUP 
-*********************/
-
-/***
-Reset and overrides  
-***/
-
-/* general body settings */
 body { 
   color: #000; 
   font-family: 'Open Sans', sans-serif;
@@ -42,11 +7,7 @@ body {
   direction: ltr;
 }
 
-/*
-Internet Explorer 10 doesn't differentiate device width from viewport width, and thus doesn't 
-properly apply the media queries in Bootstrap's CSS. To address this, 
-you can optionally include the following CSS and JavaScript to work around this problem until Microsoft issues a fix.
-*/
+
 @-webkit-viewport { 
   width: device-width; 
 }
@@ -67,15 +28,10 @@ you can optionally include the following CSS and JavaScript to work around this 
   width: device-width; 
 }
 
-/* Internet Explorer 10 doesn't differentiate device width from viewport width, 
-and thus doesn't properly apply the media queries in Bootstrap's CSS. To address this, following CSS code applied */
 @-ms-viewport { 
   width: auto !important; 
 }
 
-/***
-Custom Scrollbars
-***/
 
 ::-webkit-scrollbar {  
     width: 12px;  
@@ -4425,7 +4381,7 @@ background-color:#d18c00;
 }
 
 
-
+.g-tab-cell-item-pad:after{content:"";display:block;clear:both;font-size:0;text-decoration:none;visibility:hidden;text-indent:-999999px}
 .dropdown-menu.dropdown-alerts,.dropdown-menu.dropdown-alerts li{padding:0;margin:0;list-style:none;text-align:left}
 .dropdown-menu.dropdown-alerts{width:100%}
 .well.well-sm.row.ng-scope .dropdown-toggle{color:#fff;background:none}
@@ -4444,12 +4400,10 @@ background-color:#d18c00;
 .portlet-body .ng-scope{border:solid #fff 0px!important}
 .portlet.box > .portlet-body{background:#f0f0f0!important}
 .portlet-body .chat-body.clearfix{border-left:solid #ddd 1px}
-
-
-.portlet-body .ng-scope .portlet-title{transition:all 0.25s ease-in-out;-webkit-transition:all 0.25s ease-in-out;-khtml-transition:all 0.25s ease-in-out;-moz-transition:all 0.25s ease-in-out;-o-transition:all 0.25s ease-in-out;-ms-transition:all 0.25s ease-in-out;-icab-transition:all 0.25s ease-in-out}
+.g-tab-cell-item,.t-item a,.portlet-body .ng-scope .portlet-title{transition:all 0.25s ease-in-out;-webkit-transition:all 0.25s ease-in-out;-khtml-transition:all 0.25s ease-in-out;-moz-transition:all 0.25s ease-in-out;-o-transition:all 0.25s ease-in-out;-ms-transition:all 0.25s ease-in-out;-icab-transition:all 0.25s ease-in-out}
 .portlet-body .ng-scope:hover .portlet-title{background:#1fb5ad}
 .page-sidebar-menu{padding-top:10px}
-.g-relat{position:relative;top:0;left:0}
+.g-relat{/*position:relative;top:0;left:0*/}
 .page-header-fixed .page-container{margin-top:0}
 .header.navbar{height:44px}
 .g-tool-bar{position:absolute;top:0;left:224px;width:470px}
@@ -4470,3 +4424,20 @@ background-color:#d18c00;
 .f-border{border:solid #f5f5f5 1px}
 .sidebar-toggler.hidden-phone{width:1;height:1;overflow:hidden;position:absolute;top:-999999px;left:-999999px}
 .header.navbar .navbar-nav > li.dropdown .dropdown-toggle{padding:14px 10px 7px}
+.new-sidebar-panel{width:392px;height:100%;position:absolute;right:0;height:100%;background:#32323a;z-index:100}
+.g-tab-bar{height:55px;width:100%;background:#949494;position:absolute;top:44px;left:0;z-index:100}
+.g-tab-cell{width:392px;height:100%;position:absolute;top:0;left:0;height:100%;z-index:10}
+.g-tab-cell-list,.g-tab-cell-list{list-style:none;padding:0;margin:0;font-size:0}
+.g-tab-cell-list{width:100%;height:100%;position:absolute;top:0;left:0}
+.g-tab-cell-item{width:100%;height:100%;position:absolute;top:0;left:0;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";filter:alpha(opacity=0);-moz-opacity:0;-khtml-opacity:0;opacity:0;display:none}
+.g-tab-cell-item.current{-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";filter:alpha(opacity=100);-moz-opacity:1;-khtml-opacity:1;opacity:1;display:block}
+.t-list,.t-item{list-style:none;font-size:0;padding:0;margin:0;height:55px}
+.t-list{width:100%}
+.t-item{width:25%;float:left;position:relative;top:0;left:0}
+.t-item a{display:block;color:#fff;font-size:16px;font-family:arial,sans-serif;padding:16px;text-align:center;text-decoration:none}
+.t-item a:hover{text-decoration:none;background:#32323a}
+.t-item.current a{background:#32323a}
+.g-tab-cell-item-pad{clear:both}
+.list-persons,.item-person{list-style:none;font-size:0;clear:both}
+.dropdown.user .dropdown-menu{display:none!important}
+.dashboard-stat{display:block!important;width:230px!important}
