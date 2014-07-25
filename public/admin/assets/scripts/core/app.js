@@ -455,6 +455,13 @@ var App = function () {
             }
         });
 
+		$("body").on("click",".g-menu-button",function(){
+			$(".sidebar-toggler.hidden-sm.hidden-xs").trigger("click");
+			$(".sidebar-toggler.hidden-phone").trigger("click");
+			$(".sidebar-toggler.hidden-sm.hidden-xs").trigger("click");
+			$(".sidebar-toggler.hidden-sm").trigger("click");
+		});
+
         // handle the search submit(for sidebar search and responsive mode of the header search)
         $('.sidebar-search .submit').on('click', function (e) {
             e.preventDefault();
@@ -1303,5 +1310,7 @@ var App = function () {
         }
 
     };
+
+
 
 }();
