@@ -100,7 +100,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-alerts">
                         <li ng-repeat="provider in providers | elNetworkIsReady">
-                            <i class="{{provider.iconClass}}"></i>          
+                            <i class="{{provider.iconClass}}"></i> {{provider.name}}        
                             <div class="btn-group">
                                 <a class="btn" ng-repeat="feed in provider.feeds" ng-click="feed.create()" data-toggle="dropdown">
                                     {{feed.name}}
