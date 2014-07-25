@@ -1011,6 +1011,64 @@ License: You must have a valid license purchased only from themeforest(the above
 	<!-- END SIDEBAR -->
 	<!-- BEGIN CONTENT -->
 	<div class="page-content-wrapper">
+
+		<!--===new-sidebar-panel===-->
+		<div class="new-sidebar-panel">
+
+			<!--g-tab-bar-->
+			<div class="g-tab-bar">
+				<ul class="t-list">
+					<li class="t-item current">
+						<a href="#">Users</a>
+					</li>
+					<li class="t-item">
+						<a href="#">Chat</a>
+					</li>
+					<li class="t-item">
+						<a href="#">History</a>
+					</li>
+					<li class="t-item">
+						<a href="#">Setings</a>
+					</li>
+				</ul>
+			</div>
+			<!--/g-tab-bar-->
+
+			<!--g-tab-cell-->
+			<div class="g-tab-cell">
+				<ul class="g-tab-cell-list">
+					<li class="g-tab-cell-item current">
+
+						<div class="g-tab-cell-item-pad">
+							<ul class="list-persons">
+								<li class="item-person">
+								
+								</li>
+							</ul>
+						</div>
+
+					</li>
+					<li class="g-tab-cell-item">
+						<div class="g-tab-cell-item-pad">
+						
+						</div>
+					</li>
+					<li class="g-tab-cell-item">
+						<div class="g-tab-cell-item-pad">
+						
+						</div>
+					</li>
+					<li class="g-tab-cell-item">
+						<div class="g-tab-cell-item-pad">
+						
+						</div>
+					</li>
+				</ul>
+			</div>
+			<!--/g-tab-cell-->
+		</div>
+		<!--===/new-sidebar-panel===-->
+
 		<div class="page-content">
 			<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
 			<div class="modal fade" id="portlet-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -1505,7 +1563,22 @@ function incrementnumbers()
 		$(".sidebar-toggler.hidden-phone").trigger("click");
 	});
 
-incrementnumbers();
+	incrementnumbers();
+
+	$("body").on("click",".t-item",function(e){
+		$(".t-item").each(function(){$(this).removeClass("current");});
+		$(this).addClass("current");
+		el_numb=$(this).index();
+		$(".g-tab-cell-item").each(function(){
+			$(this).css({display:"none",opacity:"0"});
+			$(this).removeClass("current");
+		});
+		$(".g-tab-cell-item").eq(el_numb).css({display:"block"});
+		$(".g-tab-cell-item").eq(el_numb).stop().animate({opacity:"1"});
+		$(this).addClass("current");
+		return false;
+	});
+
 });
 </script>
 <!-- END JAVASCRIPTS -->
