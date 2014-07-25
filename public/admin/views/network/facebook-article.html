@@ -11,13 +11,14 @@
             </stront>
         </a> 
         <small class="text-muted pull-right from-now">
-            <i class="icon-clock"></i>
+	        <img ng-if="item.icon" ng-src="{{ item.icon }}"/>
+      	    <i ng-if="!item.icon" class="icon-clock"></i>
             <span am-time-ago="item.created_time"></span>
         </small>
     </div>
     <div class="portlet-body">
         <span class="chat-img">
-            <img height="50" ng-src="https://graph.facebook.com/v2.0/{{item.from.id}}/picture" alt="{{item.from.name}}" class="img-circle">
+             <div class="profile"><a ng-href="http://www.facebook.com/profile.php?id={{ item.from.id }}"><img ng-src="http://graph.facebook.com/{{ item.from.id }}/picture"/></a></div>        
         </span>
         <div class="chat-body clearfix">
             <div class="item item-body">
@@ -33,6 +34,13 @@
 						<div class="post-two-column-right">
 							<div class="post-two-column-right-pad">
 								<div ng-bind-html="item.message | words:25 | linkify"></div>
+								<div ng-if="item.caption || item.picture">
+									<div ng-if="item.name"><a ng-href="{{item.link}}">{{item.name}}</a></div>
+									<div ng-if="item.caption">{{item.caption}}</div>
+									<div ng-if="item.description">{{item.description}}</div>
+								</div>
+
+
 								<div ng-if="item.to">
 									 — 
 									<a ng-repeat="to in item.to.data" target="_blank" ng-href="https://www.facebook.com/profile.php?id={{to.id}}">
