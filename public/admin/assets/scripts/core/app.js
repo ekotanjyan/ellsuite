@@ -460,6 +460,7 @@ var App = function () {
 			$(".sidebar-toggler.hidden-phone").trigger("click");
 			$(".sidebar-toggler.hidden-sm.hidden-xs").trigger("click");
 			$(".sidebar-toggler.hidden-sm").trigger("click");
+			$(".navbar-toggle").trigger("click");
 		});
 
         // handle the search submit(for sidebar search and responsive mode of the header search)
