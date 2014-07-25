@@ -80,6 +80,7 @@ var App = function () {
         var viewport = _getViewPort();
         if (viewport.width < 992) {
             $('body').removeClass("page-sidebar-closed");
+
         }
     }
 

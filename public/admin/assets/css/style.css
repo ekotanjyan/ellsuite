@@ -4468,3 +4468,4 @@ background-color:#d18c00;
 #c-hover:hover,.c-hover:hover{background:#32323a!important;color:#fff}
 #c-hover:hover span,.c-hover:hover span{color:#fff!important}
 .f-border{border:solid #f5f5f5 1px}
+.sidebar-toggler.hidden-phone{width:1;height:1;overflow:hidden;position:absolute;top:-999999px;left:-999999px}
