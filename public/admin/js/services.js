@@ -131,22 +131,15 @@ define(['angular','LinkedIn', 'Codebird'], function (angular,IN, Codebird) {
 			return Facebooker;
 		}])
 		.factory('Linkediner', ['LinkedinAPI',function (IN) {
-			var ReloadLinkedinData = function ReloadLinkedinData(callback){
+			var FetchMeFromLinkedin = function FetchMeFromLinkedin(cb){
 				if(Linkediner.me){
-					IN.API.NetworkUpdates("me")
-						.fields([''])
-					    .result(function(res){
-							callback( res );
-						});
+					cb();
 				}else{
 					IN.API.Profile("me").result(function(res){
 						Linkediner.me = res['values'][0];
-						ReloadLinkedinData(callback);
+						cb();
 					});
 				}
-			};
-			var FetchMeFromLinkedin = function FetchMeFromLinkedin(cb){
-				cb();
 			}
 			var Linkediner = {
 				"isLogedin":false,
@@ -157,21 +150,35 @@ define(['angular','LinkedIn', 'Codebird'], function (angular,IN, Codebird) {
 						FetchMeFromLinkedin(cb);
 					}else{
 						IN.User.authorize(function(){
-							ReloadLinkedinData(cb);
+							$this.isLogedin = true;
+							FetchMeFromLinkedin(cb);
 						});
-					}
-				},
-				"fetch":function(cb){
-					if(IN.User.isAuthorized()){
-						ReloadLinkedinData(cb);
-					}else{
-						IN.User.authorize(function(){
-							ReloadLinkedinData(cb);
-						})
 					}
 				},
 				"me":undefined,
 			};
+			Linkediner.fetch = function(type, cb){
+				if(Linkediner.isLogedin){
+					this[type](cb);
+				}else{
+					cb(new Error("Call .auth(<cb>) first."));
+				};
+			}.bind({
+				"newsFeed":function(callback){
+					IN.API.NetworkUpdates("me")
+						.fields([''])
+					    .result(function(res){
+							callback(res);
+						});
+				},
+				"profileFeed":function(cb){
+					IN.API.MemberUpdates('me')
+						.fields([''])
+						.result(function(res){
+							cb(res)
+						});
+				}
+			});
 			return Linkediner;
 		}])
 		.factory('Twitter', ['$http',function ($http) {

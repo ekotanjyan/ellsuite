@@ -73,7 +73,7 @@
             </a>
             <ul class="dropdown-menu dropdown-alerts">
                 <li ng-repeat-start="provider in providers">
-                    <button ng-click="provider.init('facebook')" class="btn btn-block btn-link" ng-disabled="provider.isReady">
+                    <button ng-click="provider.init()" class="btn btn-block btn-link" ng-disabled="provider.isReady">
                         <i class="{{provider.iconClass}}"></i> <span>{{provider.name}}</span>
                     </button>
                 </li>
@@ -86,7 +86,7 @@
 		<div class="panel row panel-primary network-icons-pane">
             <span ng-repeat="provider in providers | elNetworkIsReady">
                 <img ng-src="{{provider.me.picture.data.url}}" height="32" ng-if="provider.name == 'Facebook'">
-                <img ng-src="{{provider.me.picture.data.url}}" height="32" ng-if="provider.name == 'Linkedin'">
+                <img ng-src="{{provider.me.pictureUrl}}" height="32" ng-if="provider.name == 'Linkedin'">
                 <img ng-src="{{provider.me.picture.data.url}}" height="32" ng-if="provider.name == 'Twitter'">
                 <img ng-src="{{provider.me.picture.data.url}}" height="32" ng-if="provider.name == 'Google+'">
             </span>
@@ -114,7 +114,7 @@
 </div>
 
 <div class="row panel-streams g-c-height">
-    <div class="list-inline" ng-sortable="items">
+    <div class="list-inline" ng-sortable="networks">
         <div  
             ng-repeat="network in networks"  
             el-networker="{{network.type}}"

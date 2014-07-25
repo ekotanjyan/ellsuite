@@ -54,9 +54,10 @@
 				"iconClass":"fa fa-linkedin fa-fw",
 				"name":"Linkedin",
 				"init":function(){
+					var $this = this;
 					Linkediner.auth(function(){
-						this.isReady = true; 
-						consle.log('asdsa', arguments);
+						$this.isReady = true; 
+						toaster.pop('success', 'Linkedin authenticated', 'Connected to ' + Linkediner)
 					});
 				},
 				"feeds":[

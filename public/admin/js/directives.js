@@ -119,14 +119,14 @@ define(['angular', 'services', 'angularSlider'], function(angular, services) {
                     this.show();
                 }
             }
-        }
+        };
         return {
             "restrict":"A",
             "replace":true,
             "templateUrl":"/admin/views/network/facebook-readmore.html",
             "link":function($scope, $element, $attrs){
                 $scope.$element = $element;
-                Facebook.parseXFBML($element[0]);
+                FB.XFBML.parse($element[0]);
                 $element.on('hidden.bs.modal', function(){
                     $scope.isShown = false;
                 });
