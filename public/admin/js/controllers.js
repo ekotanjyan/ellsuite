@@ -32,18 +32,21 @@
 				},
 				"feeds":[{
 						"name":"News Feed",
+						"option":'news',
 						"create":function(){
-							$scope.create('facebook','news');
+							$scope.create('facebook', this);
 						}
 					},{
 						"name":"Media Feed",
+						"option":"newsMedia",
 						"create":function(){
-							$scope.create('facebook', 'newsMedia');
+							$scope.create('facebook', this);
 						}
 					},{
 						"name":"Timeline",
+						"option":"timeline",
 						"create":function(){
-							$scope.create('facebook', 'timeline');
+							$scope.create('facebook', this);
 						}
 					},
 				],
@@ -63,14 +66,16 @@
 				"feeds":[
 					{
 						"name":"News feed",
+						"option":"newsFeed",
 						"create":function(){
-							$scope.create('linkedin', 'newsFeed');
+							$scope.create('linkedin', this);
 						}
 					},
 					{
 						"name":"Profile feed",
+						"option":"profileFeed",
 						"create":function(){
-							$scope.create('linkedin', 'profileFeed');
+							$scope.create('linkedin', this);
 						}
 					},
 				],
@@ -81,31 +86,62 @@
 				"iconClass":"fa fa-twitter fa-fw",
 				"name":"Twitter",
 				"init":function(){
-					Facebooker.auth(function(){
-						consle.log('asdsa', arguments);
+					var $this = this;
+					Google.auth(function(res){
+						if(res.error){
+							toaster.pop('error', "Google+ not authenticated.");
+						}else{
+							$this.isReady = true;
+						}
 					});
 				},
+				"feeds":[
+					{
+						"name":"Home",
+						"option":"home",
+						"create":function(){
+							$scope.create('google-plus', this);
+						}
+					}
+				],
 				"profile":{},
+				"__proto__":Google,
 			},{
 				"isReady":false,
 				"iconClass":"fa fa-google-plus fa-fw",
 				"name":"Google+",
 				"init":function(){
-					Facebooker.auth(function(){
-						consle.log('asdsa', arguments);
+					var $this = this;
+					Google.auth(function(res){
+						if(res.error){
+							toaster.pop('error', "Google+ not authenticated.");
+						}else{
+							$this.isReady = true;
+						}
 					});
 				},
+				"feeds":[
+					{
+						"name":"Home",
+						"option":"home",
+						"create":function(){
+							$scope.create('google-plus', this);
+						}
+					}
+				],
 				"profile":{},
+				"__proto__":Google,
 			}];
 			$scope.grid = 2;
-			$scope.create = function CreatNetwork(type, option){
+			$scope.create = function CreatNetwork(type, feed){
 				var _return;
 				if(type){
 					_return = {
 						"type":type,
 						"createTime":Date.now(),
 						"items":[],
-						"option":option || null
+						"feed":feed,
+						"option":feed.option || null
 					}
 					$scope.networks.push(_return);
 				}
@@ -136,7 +172,7 @@
 			function ReloadLinkedinData(){
 				Linkediner.fetch($scope.network.option, function FetchTheFeed(feed) {
 					$scope.$parent.$safeApply(function(){
-						$scope.network.items = feed.data;
+						$scope.network.items = feed.values;
 					});
 				})
 			};
@@ -155,15 +191,17 @@
 			$scope.refresh = ReloadLinkedinData;
 			
 		}])
-		.controller('FacebookNetworksController', ['$scope', 'Facebooker', function($scope, Facebooker) {
+		.controller('FacebookNetworksController', ['$scope', 'Facebooker', '$interpolate', function($scope, Facebooker, $interpolate) {
 			$scope.network.profile = {};
 			$scope.isToolsShown = false;
-			
+			$scope.title = $interpolate("{{name}} | {{type}}")({
+				"name":Facebooker.me.name,
+				"type":$scope.network.feed.name
+			}); 
 			function RefreshFacebookFeed(){
 				Facebooker.fetch($scope.network.option, function FetchTheFeed(feed) {
 					$scope.$parent.$safeApply(function(){
 						$scope.network.items = feed.data;
-						$scope.network.profile.picture = 'https://graph.facebook.com/v2.0/' + Facebooker.me.id + '/picture'
 					});
 				});
 			}
@@ -187,10 +225,9 @@
 			$scope.network.profile = {};
 			$scope.isToolsShown = false;
 			var refresh = function RefreshGooglePlus(){
-				Google.fetch(function(res){
+				Google.fetch($scope.network.option, function(res){
 					$scope.$safeApply(function(){
 						$scope.network.items = res.items || [];
-						$scope.network.profile = Google.me;
 					});
 				});
 			}

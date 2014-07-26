@@ -6,37 +6,51 @@ define(['angular','LinkedIn', 'Codebird'], function (angular,IN, Codebird) {
 			return $resource('/admin/macro/:id');
 		}])
 		.factory('Google', ['GooglePlus',function (GooglePlus) {
-			var FetchActivites = function FetchGooglePlusActivity(cb){
-				gapi.client.load('plus','v1',function(){
-					var request = gapi.client.plus.activities.list({
-						'userId' : 'me',
-						'collection' : 'public'
-					}).execute(function(resp) {
-						cb(resp);
-					});
-				});
-			};
+			var fetchMyGoogleProfil = function(){
+
+			}
 			var Google = {
-				me:undefined,
-				fetch:function FetchGoogle(cb){
+				"me":undefined,
+				"isLogedin":false,
+				"auth": function FetchGooglePlusActivity(cb){
+					var $this = this;
 					GooglePlus.getUser().then(function(res){
 						if(res.error){
 							GooglePlus.login().then(function (authResult) {
 					            GooglePlus.getUser().then(function(res){
-						            FetchActivites(cb);
+						            $this.isLogedin = true;
 						            Google.me = res;
+									cb(res);
+
 					            });
 					        }, function (err) {
-					            console.log(err);
 					            cb(err);
 					        });
 						}else{
-				            FetchActivites(cb);
+							$this.isLogedin = true;
 				            Google.me = res;
 						}
 					});
+				},
+			};
+			Google.fetch = function(type, cb){
+				if(Google.isLogedin){
+					this[type](cb);
+				}else{
+					cb(new Error("Call .auth(<cb>) first"));
 				}
-			}
+			}.bind({
+				"home":function(cb){
+					gapi.client.load('plus','v1',function(){
+						var request = gapi.client.plus.activities.list({
+							'userId' : 'me',
+							'collection' : 'public'
+						}).execute(function(resp) {
+							cb(resp);
+						});
+					});
+				}
+			});
 			return Google;
 		}])
 		.factory('Facebooker', ['Facebook',function (Facebook) {
@@ -111,16 +125,19 @@ define(['angular','LinkedIn', 'Codebird'], function (angular,IN, Codebird) {
 					});
 				},
 				"newsMedia": function(cb){
-					var _this = this;
-					_this.news(function(res){
-						var __tmp = [];
-						angular.forEach(res.data,function(item){
-							if(item.type == 'video' || item.type == 'photo'){
-								__tmp.push(item);
-							}
-						});
-						cb(__tmp);
-					});
+					var _objects = [];
+					var __handler = function(obj){
+						_objects.push(obj);
+						if(_objects.length >= 2){
+							var shuffle = function shuffle(o){ 
+							    for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+							    return o;
+							};
+							cb({"data":shuffle(_objects[0].data.concat(_objects[1].data))});
+						};
+					};
+					Facebook.api('/me/home?filter=app_2305272732', __handler);
+					Facebook.api('/me/home?filter=app_2392950137', __handler);
 				},
 				"timeline": function(cb){
 					Facebook.api('me/posts?fields=actions,application,call_to_action,caption,description,created_time,expanded_width,feed_targeting,from,full_picture,height,icon,id,expanded_height,child_attachments,coordinates,is_hidden,is_popular,is_published,link,message,message_tags,name,object_id,parent_id,picture,place,privacy,promotion_status,properties,scheduled_publish_time,shares,source,status_type,story,story_tags,subscribed,targeting,timeline_visibility,to,type,updated_time,via,width,with_tags&with=<value>', function(res){
